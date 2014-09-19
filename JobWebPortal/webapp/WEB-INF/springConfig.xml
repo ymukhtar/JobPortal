@@ -6,7 +6,7 @@
 		xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- <http >
+	 <http >
 			<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<intercept-url pattern="/index.html" access="ROLE_USER"/>
@@ -14,7 +14,7 @@
 			<intercept-url pattern="/cars" access="ROLE_USER"/>
 			<form-login login-page="/login.jsp" authentication-failure-url="/login.jsp" default-target-url="/index.html"/>
 			<logout logout-success-url="/login.jsp" delete-cookies="JSESSIONID"/>
-		</http> -->
+		</http> 
 	<global-method-security secured-annotations="enabled"></global-method-security>
 	<beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 	
