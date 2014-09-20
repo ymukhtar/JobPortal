@@ -2,15 +2,22 @@ package com.mum.jobportal.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 
  * @author yasirmukhtar
+ * @author aTariq
  *
  */
 @Entity
@@ -24,10 +31,16 @@ public abstract class Person implements Serializable{
 	@GeneratedValue
 	@Id
 	private long personId;
+	@Pattern(regexp="([a-zA-Z]{3,30}\\s*)+",message="first name should be valid!")
 	private String firstName;
+	@Pattern(regexp="([a-zA-Z]{3,30}\\s*)+",message="last name should be valid!")
 	private String lastName;
+	@Pattern(regexp="^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$",message="Phone Number is invalid")
 	private String phoneNumber;
+	@Email
 	private String emailAddress;
+	@Embedded
+	private Address address;
 	
 	public Person(){
 		
@@ -72,7 +85,12 @@ public abstract class Person implements Serializable{
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
 		return "Person [firstName=" + firstName + ", lastName=" + lastName
