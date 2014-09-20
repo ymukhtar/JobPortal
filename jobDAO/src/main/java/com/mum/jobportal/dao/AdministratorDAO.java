@@ -1,21 +1,21 @@
 package com.mum.jobportal.dao;
 
-import com.mum.jobportal.Idao.IVaccancyDAO;
-import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.Idao.IAdministratorDAO;
+import com.mum.jobportal.domain.Administrator;
 
-public class VaccancyDAO implements IVaccancyDAO{
+public class AdministratorDAO implements IAdministratorDAO{
 
-	public void create(Vaccancy vaccancy) {
+	public void create(Administrator admininstrator) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void update(Vaccancy vaccancy) {
+	public void update(Administrator admininstrator) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void delete(Vaccancy vaccancy) {
+	public void delete(Administrator admininstrator) {
 		// TODO Auto-generated method stub
 		
 	}
