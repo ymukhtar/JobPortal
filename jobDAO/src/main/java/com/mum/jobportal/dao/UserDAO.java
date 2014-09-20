@@ -1,33 +1,45 @@
 package com.mum.jobportal.dao;
 
+import java.util.List;
+
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.mum.jobportal.Idao.IUserDAO;
+import com.mum.jobportal.domain.Authorities;
 import com.mum.jobportal.domain.User;
 
 public class UserDAO implements IUserDAO{
-
+	private SessionFactory sessionFactory;
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	@Transactional(propagation=Propagation.MANDATORY)
 	public void create(User user) {
 		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().persist(user);
 	}
-
+	@Transactional(propagation=Propagation.MANDATORY)
 	public void update(User user) {
 		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().update(user);
 	}
-
+	@Transactional(propagation=Propagation.MANDATORY)
 	public void delete(User user) {
 		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().delete(user);
 	}
-
-	public void get(long id) {
+	@Transactional(propagation=Propagation.MANDATORY)
+	public User get(long id) {
 		// TODO Auto-generated method stub
-		
+		return (User)sessionFactory.getCurrentSession().get(User.class, id);
 	}
-
-	public void getAll() {
+	@Transactional(propagation=Propagation.MANDATORY)
+	public List<User> getAll() {
 		// TODO Auto-generated method stub
-		
+		return sessionFactory.getCurrentSession().createQuery("From user").list();
 	}
 
 }
