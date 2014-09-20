@@ -3,6 +3,7 @@ package com.mum.jobportal.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,11 +12,9 @@ import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Employer;
 
 public class EmployerDAO implements IEmployerDAO{
+	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 	@Transactional(propagation=Propagation.MANDATORY)
 	public void create(Employer employer) {
 		// TODO Auto-generated method stub
