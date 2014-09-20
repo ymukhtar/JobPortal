@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 /**
  * 
  * @author yasirmukhtar
+ * @author aTariq
  *
  */
 @Entity
@@ -34,7 +35,7 @@ public abstract class Person implements Serializable{
 	private String firstName;
 	@Pattern(regexp="([a-zA-Z]{3,30}\\s*)+",message="last name should be valid!")
 	private String lastName;
-	@Pattern(regexp="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$",message="email address should be valid!")
+	@Pattern(regexp="^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$",message="Phone Number is invalid")
 	private String phoneNumber;
 	@Email
 	private String emailAddress;
