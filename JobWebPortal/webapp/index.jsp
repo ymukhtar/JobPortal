@@ -80,7 +80,7 @@
 					</ul>
 				</p>
 				<p>
-					<a class="btn btn-default" href="#" role="button">Register &raquo;</a>
+					<a class="btn btn-default" href="<c:url value="/registerEmployer"/>" role="button">Register &raquo;</a>
 				</p>
 			</div>
 			<div class="col-md-4">

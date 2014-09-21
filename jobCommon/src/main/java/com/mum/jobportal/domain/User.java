@@ -3,6 +3,7 @@ package com.mum.jobportal.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class User {
 	@Column(length=45)
 	@NotEmpty
 	private String password;
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",cascade=CascadeType.ALL)
 	private List<Authorities> authoritiesList=new ArrayList<Authorities>();
 	
 	private short enabled;

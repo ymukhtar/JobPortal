@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
 /**
@@ -38,8 +42,12 @@ public class Employer implements Serializable{
 	@Pattern(regexp="^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$",message="Phone Number is invalid")
 	private String phoneNumber;
 
-	@OneToMany(mappedBy="employer")
+	@OneToMany(mappedBy="employer",cascade=CascadeType.ALL)
 	List<Vaccancy> vaccancyList=new ArrayList<Vaccancy>();
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="userName")
+	private User user;
 	
 	public Employer() {
 		super();
@@ -101,6 +109,23 @@ public class Employer implements Serializable{
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+
+	public List<Vaccancy> getVaccancyList() {
+		return vaccancyList;
+	}
+
+	public void setVaccancyList(List<Vaccancy> vaccancyList) {
+		this.vaccancyList = vaccancyList;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
