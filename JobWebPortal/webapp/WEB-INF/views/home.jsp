@@ -7,7 +7,6 @@
 <title>Job Portal Welcome <sec:authentication property="principal.username" /></title>
 </head>
 <body>
-	<h1>Welcome home</h1>
-
+	<h1>Welcome home <sec:authentication property="principal.username" /></h1>
 </body>
 </html>
