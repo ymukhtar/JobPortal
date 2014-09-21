@@ -44,15 +44,23 @@
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Welcome to Job Portal!</h1>
-			<p>This is a template for a simple marketing or informational
-				website. It includes a large callout called a jumbotron and three
-				supporting pieces of content. Use it as a starting point to create
-				something more unique.</p>
-			<p>
-				<a class="btn btn-primary btn-lg" role="button">Learn more
-					&raquo;</a>
-			</p>
+			<div class="row">
+				<h3>Welcome to Job Portal!</h3>
+				<p>Search From thousands of Jobs</p>
+			</div>
+			<div class="row">
+				<form class="form-horizontal" role="form" method="POST"  action="<c:url value='/searchJobs'/>">
+					<div class="form-group form-group-lg">	
+						<input type="text" name="searchType" placeholder="Job Title, Keywords or Company Name" class="form-control">
+					</div>
+					<div class="form-group form-group-lg">
+						<input name="searchAddress" type="text" placeholder="City and State or Zip Code" class="form-control">
+					</div>
+					<div class="form-group form-group-lg">
+						<a class="btn btn-default" role="button"><span class="glyphicon glyphicon-search"></span>&nbsp;Find Jobs</a>
+						</div>
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -60,33 +68,44 @@
 		<!-- Example row of columns -->
 		<div class="row">
 			<div class="col-md-4">
-				<h2>Heading</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
+				<h2>Employers Register</h2>
 				<p>
-					<a class="btn btn-default" href="#" role="button">View details
-						&raquo;</a>
+					<ul>
+						<li>Why create an account?</li>
+						<li>Reach the Right Talent</li>
+						<li>Spend Less to Hire</li>
+						<li>Make Hires Faster</li>
+						<li>View Resumes online</li>
+						<li>Get noticed by relevant candidates</li>
+					</ul>
+				</p>
+				<p>
+					<a class="btn btn-default" href="#" role="button">Register &raquo;</a>
 				</p>
 			</div>
 			<div class="col-md-4">
-				<h2>Heading</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
+				<h2>Job Seekers Register</h2>
+					<ul>
+						<li>Why create an account?</li>
+						<li>Follow tech Talent Communities that mirror your interests</li>
+						<li>Get relevant news, jobs and a forum to connect with like-minded tech pros</li>
+						<li>Post a searchable resume and get found by employers</li>
+						<li>Track jobs you've already viewed and applied to</li>
+						<li>Store resumes and cover letters to use with job applications</li>
+					</ul>
 				<p>
-					<a class="btn btn-default" href="#" role="button">View details
-						&raquo;</a>
+					<a class="btn btn-default" href="#" role="button">Register &raquo;</a>
 				</p>
 			</div>
 			<div class="col-md-4">
-				<h2>Heading</h2>
-				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-					egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-					nibh, ut fermentum massa justo sit amet risus.</p>
+				<h2>Categories</h2>
+				<p>
+					<ul>
+						<li>JAVA</li>
+						<li>.NET</li>
+						<li>Python</li>
+					</ul>
+				</p>
 				<p>
 					<a class="btn btn-default" href="#" role="button">View details
 						&raquo;</a>
