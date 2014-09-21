@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,36 +17,29 @@ import com.mum.jobportal.domain.Category;
 
 /**
  * @author atariq
+ * @author yasirmukhtar
  *
  */
+
+@Repository
+@Transactional(propagation=Propagation.MANDATORY)
 public class CatogaryDAO implements ICatogoryDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Transactional(propagation=Propagation.MANDATORY)
 	public void create(Category category) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().persist(category);
 	}
-	@Transactional(propagation=Propagation.MANDATORY)
 	public void update(Category category) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(category);
 	}
-	@Transactional(propagation=Propagation.MANDATORY)
 	public void delete(Category category) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(category);
 	}
-	@Transactional(propagation=Propagation.MANDATORY)
 	public Category get(long id) {
-		// TODO Auto-generated method stub
 		return (Category)sessionFactory.getCurrentSession().get(Category.class, id);
 	}
-	@Transactional(propagation=Propagation.MANDATORY)
 	public List<Category> getAll() {
-		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createQuery("From Category").list();
 	}
-
 }

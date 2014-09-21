@@ -46,7 +46,7 @@
 		<div class="container">
 			<div class="row">
 				<h3>Welcome to Job Portal!</h3>
-				<p>Search From thousands of Jobs</p>
+				<p>Search from Millions of Jobs</p>
 			</div>
 			<div class="row">
 				<form class="form-horizontal" role="form" method="POST"  action="<c:url value='/searchJobs'/>">

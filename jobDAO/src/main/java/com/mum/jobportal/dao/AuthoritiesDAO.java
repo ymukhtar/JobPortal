@@ -4,39 +4,32 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mum.jobportal.Idao.IAuthoritiesDAO;
 import com.mum.jobportal.domain.Authorities;
 
+@Repository
+@Transactional(propagation=Propagation.MANDATORY)
 public class AuthoritiesDAO implements IAuthoritiesDAO{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Transactional(propagation=Propagation.MANDATORY)
 	public void create(Authorities authorities) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().persist(authorities);
 	}
-	@Transactional(propagation=Propagation.MANDATORY)
 	public void update(Authorities authorities) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(authorities);
 	}
-	@Transactional(propagation=Propagation.MANDATORY)
 	public void delete(Authorities authorities) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(authorities);
 	}
-	@Transactional(propagation=Propagation.MANDATORY)
 	public Authorities get(long id) {
-		// TODO Auto-generated method stub
 		return (Authorities)sessionFactory.getCurrentSession().get(Authorities.class, id);
 	}
-	@Transactional(propagation=Propagation.MANDATORY)
 	public List<Authorities> getAll() {
-		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createQuery("From Authorities").list();
 	}
 

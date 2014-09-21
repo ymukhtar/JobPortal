@@ -3,6 +3,7 @@ package com.mum.jobportal.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ import com.mum.jobportal.domain.Employer;
 import com.mum.jobportal.domain.JobSeeker;
 import com.mum.jobportal.domain.User;
 import com.mum.jobportal.domain.Vaccancy;
-
+@Service
 public class JobPortalService implements IJobPortalService {
 
 	@Autowired
