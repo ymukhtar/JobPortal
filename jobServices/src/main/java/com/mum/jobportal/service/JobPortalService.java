@@ -110,82 +110,82 @@ public class JobPortalService implements IJobPortalService {
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<Category> getAllCategory() {
 		// TODO Auto-generated method stub
-		return null;
+		return categoryDAO.getAll();
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void createUser(User user) {
 		// TODO Auto-generated method stub
-
+		userDAO.create(user);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void updateJobSeeker(User user) {
 		// TODO Auto-generated method stub
-
+		userDAO.update(user);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void deleteJobSeeker(User user) {
 		// TODO Auto-generated method stub
-
+		userDAO.delete(user);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public User getUser(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDAO.get(id);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
-		return null;
+		return userDAO.getAll();
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void createAuthorities(Authorities authorities) {
 		// TODO Auto-generated method stub
-
+		authoritiesDAO.create(authorities);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void updateJobSeeker(Authorities authorities) {
 		// TODO Auto-generated method stub
-
+		authoritiesDAO.update(authorities);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void deleteJobSeeker(Authorities authorities) {
 		// TODO Auto-generated method stub
-
+		authoritiesDAO.delete(authorities);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public Authorities getAuthorities(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return authoritiesDAO.get(id);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<Authorities> getAllAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		return authoritiesDAO.getAll();
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void createVaccancy(Vaccancy vaccancy) {
 		// TODO Auto-generated method stub
-
+		vaccancyDAO.create(vaccancy);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
-	public void updateJobSeeker(Vaccancy vaccancy) {
+	public void updateVaccancy(Vaccancy vaccancy) {
 		// TODO Auto-generated method stub
-
+		vaccancyDAO.update(vaccancy);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
-	public void deleteJobSeeker(Vaccancy vaccancy) {
+	public void deleteVaccancy(Vaccancy vaccancy) {
 		// TODO Auto-generated method stub
-
+		vaccancyDAO.delete(vaccancy);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public Vaccancy getVaccancy(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return vaccancyDAO.get(id);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<Vaccancy> getAllVaccancy() {
 		// TODO Auto-generated method stub
-		return null;
+		return vaccancyDAO.getAll();
 	}
 
 }
