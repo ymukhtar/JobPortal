@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mum.jobportal.dao.AuthoritiesDAO;
-import com.mum.jobportal.dao.CatogaryDAO;
-import com.mum.jobportal.dao.EmployerDAO;
-import com.mum.jobportal.dao.JobSeekerDAO;
-import com.mum.jobportal.dao.UserDAO;
-import com.mum.jobportal.dao.VaccancyDAO;
+import com.mum.jobportal.Idao.IAuthoritiesDAO;
+import com.mum.jobportal.Idao.ICatogoryDAO;
+import com.mum.jobportal.Idao.IEmployerDAO;
+import com.mum.jobportal.Idao.IJobSeekerDAO;
+import com.mum.jobportal.Idao.IUserDAO;
+import com.mum.jobportal.Idao.IVaccancyDAO;
 import com.mum.jobportal.domain.Authorities;
 import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Employer;
@@ -22,17 +22,17 @@ import com.mum.jobportal.domain.Vaccancy;
 public class JobPortalService implements IJobPortalService {
 
 	@Autowired
-	private AuthoritiesDAO authoritiesDAO;
+	private IAuthoritiesDAO authoritiesDAO;
 	@Autowired
-	private CatogaryDAO categoryDAO;
+	private ICatogoryDAO categoryDAO;
 	@Autowired
-	private EmployerDAO employerDAO;
+	private IEmployerDAO employerDAO;
 	@Autowired
-	private JobSeekerDAO jobSeekerDAO;
+	private IJobSeekerDAO jobSeekerDAO;
 	@Autowired
-	private UserDAO userDAO;
+	private IUserDAO userDAO;
 	@Autowired
-	private VaccancyDAO vaccancyDAO;
+	private IVaccancyDAO vaccancyDAO;
 	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void createEmployer(Employer employer) {
