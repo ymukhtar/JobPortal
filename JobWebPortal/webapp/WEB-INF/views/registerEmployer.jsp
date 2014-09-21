@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,68 +27,68 @@
 	</div>
 	<div class="container">
 		<br/>
-		<form class="form-horizontal" role="form">
+		<form:form class="form-horizontal" role="form" commandName="employer" action="add" method="post">
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">User Name:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="userName" name="userName" placeholder="User Name"/>
+					<form:input type="text" class="form-control" path="user.userName" name="userName" placeholder="User Name"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="password" class="col-sm-2 control-label">Password:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="password" name="password" placeholder="password"/>
+					<form:input type="text" class="form-control" id="password" path="user.password" placeholder="password"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Name:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="name" name="name" placeholder="Employer Name"/>
+					<form:input type="text" class="form-control" id="name" path="name" placeholder="Employer Name"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="description" class="col-sm-2 control-label">Description:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="description" name="description" placeholder="Employer Description"/>
+					<form:input type="text" class="form-control" id="description" path="description" placeholder="Employer Description"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="website" class="col-sm-2 control-label">URL:</label>
 				<div class="col-sm-10">
-					<input type="url" class="form-control" id="website" name="website" placeholder="URL"/>
+					<form:input type="url" class="form-control" id="website" path="website" placeholder="URL"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="phoneNumber" class="col-sm-2 control-label">Phone Number:</label>
 				<div class="col-sm-10">
-					<input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number"/>
+					<form:input type="tel" class="form-control" id="phoneNumber" path="phoneNumber" placeholder="Phone Number"/>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="streetNo" class="col-sm-2 control-label">Street Address:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="streetNo" name="streetNo" placeholder="Street Address"/>
+					<form:input type="text" class="form-control" id="streetNo" path="address.streetNo" placeholder="Street Address"/>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="city" class="col-sm-2 control-label">City:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="city" name="city" placeholder="City"/>
+					<form:input type="text" class="form-control" id="city" path="address.city" placeholder="City"/>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="state" class="col-sm-2 control-label">State:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="state" name="state" placeholder="State"/>
+					<form:input type="text" class="form-control" id="state" path="address.state" placeholder="State"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="zip" class="col-sm-2 control-label">ZIP Code:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="zip" name="zip" placeholder="Zip Code"/>
+					<form:input type="text" class="form-control" id="zip" path="address.zip" placeholder="Zip Code"/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -95,7 +96,7 @@
 					<button type="submit" class="btn btn-default">Save</button>
 				</div>
 			</div>
-		</form>
+		</form:form>
 		<footer>
 			<p>&copy; Job Portal 2014</p>
 		</footer>
