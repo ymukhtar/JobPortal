@@ -34,7 +34,7 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="properties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="connection.pool.size">5</prop>
 				<prop key="hibernate.show_sql">true</prop>
@@ -55,7 +55,7 @@
 			<sec:intercept-url pattern="/books" access="ROLE_USER"/>
 			<sec:intercept-url pattern="/cars" access="ROLE_USER"/>
 			<sec:form-login login-page="/index.jsp" authentication-failure-url="/loginfailed" default-target-url="/home"/>
-			<sec:logout logout-success-url="/login.jsp" delete-cookies="JSESSIONID"/>
+			<sec:logout logout-success-url="/index.jsp" delete-cookies="JSESSIONID"/>
 		</sec:http> 
 	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
 	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
