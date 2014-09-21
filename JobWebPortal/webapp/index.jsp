@@ -27,12 +27,12 @@
 				<a class="navbar-brand" href="#">JobPortal</a>
 			</div>
 			<div class="navbar-collapse collapse">
-				<form class="navbar-form navbar-right" role="form">
+				<form class="navbar-form navbar-right" role="form" method="POST"  action="<c:url value='j_spring_security_check'/>">
 					<div class="form-group">
-						<input type="text" placeholder="User Name" class="form-control">
+						<input type="text" name="j_username" placeholder="User Name" class="form-control">
 					</div>
 					<div class="form-group">
-						<input type="password" placeholder="Password" class="form-control">
+						<input name="j_password" type="password" placeholder="Password" class="form-control">
 					</div>
 					<button type="submit" class="btn btn-success">Sign in</button>
 				</form>
