@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<jsp:include page="includeHome.jsp">
+	<jsp:param value="a" name="a"/>
+</jsp:include>
 <title>Job Portal Welcome <sec:authentication property="principal.username" /></title>
 </head>
 <body>
