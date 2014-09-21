@@ -18,7 +18,15 @@
 		<property name="hibernateProperties" ref="hibernateProperties" />
 		<property name="annotatedClasses">
 			<list>
-			
+				<value>com.mum.jobportal.domain.Administrator</value>
+				<value>com.mum.jobportal.domain.Authorities</value>
+				<value>com.mum.jobportal.domain.Category</value>
+				<value>com.mum.jobportal.domain.Employer</value>
+				<value>com.mum.jobportal.domain.JobSeeker</value>
+				<value>com.mum.jobportal.domain.Person</value>
+				<value>com.mum.jobportal.domain.User</value>
+				<value>com.mum.jobportal.domain.Vaccancy</value>
+				<value>com.mum.jobportal.domain.VaccancyApplication</value>
 			</list>
 		</property>
 	</bean>
@@ -42,12 +50,11 @@
 	
 	 <sec:http >
 	 		<sec:intercept-url pattern="/index.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-			<sec:intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<sec:intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 			<sec:intercept-url pattern="/index.html" access="ROLE_USER"/>
 			<sec:intercept-url pattern="/books" access="ROLE_USER"/>
 			<sec:intercept-url pattern="/cars" access="ROLE_USER"/>
-			<sec:form-login login-page="/login.jsp" authentication-failure-url="/login.jsp" default-target-url="/index.html"/>
+			<sec:form-login login-page="/index.jsp" authentication-failure-url="/loginfailed" default-target-url="/home"/>
 			<sec:logout logout-success-url="/login.jsp" delete-cookies="JSESSIONID"/>
 		</sec:http> 
 	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>

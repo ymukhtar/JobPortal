@@ -26,6 +26,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Authorities> authoritiesList=new ArrayList<Authorities>();
 	
+	private short enabled;
 	
 	public String getUserName() {
 		return userName;
@@ -38,6 +39,18 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public List<Authorities> getAuthoritiesList() {
+		return authoritiesList;
+	}
+	public void setAuthoritiesList(List<Authorities> authoritiesList) {
+		this.authoritiesList = authoritiesList;
+	}
+	public short getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(short enabled) {
+		this.enabled = enabled;
 	}
 	
 }
