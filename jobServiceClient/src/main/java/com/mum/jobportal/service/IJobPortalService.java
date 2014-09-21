@@ -47,8 +47,8 @@ public interface IJobPortalService {
 	public List<Authorities> getAllAuthorities();
 	
 	public void createVaccancy(Vaccancy vaccancy);
-	public void updateJobSeeker(Vaccancy vaccancy);
-	public void deleteJobSeeker(Vaccancy vaccancy);
+	public void updateVaccancy(Vaccancy vaccancy);
+	public void deleteVaccancy(Vaccancy vaccancy);
 	public Vaccancy getVaccancy(long id);
 	public List<Vaccancy> getAllVaccancy();
 }
