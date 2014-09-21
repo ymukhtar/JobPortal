@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 /**
  * @author aTariq
  * @author ymukhtar
@@ -33,7 +34,8 @@ public class JobSeeker extends Person  implements Serializable{
 	@OneToMany(mappedBy="seeker")
 	private List<VaccancyApplication> applicationList=new ArrayList<VaccancyApplication>();
 	
-	
+	@OneToOne
+	private User user;
 	
 	public JobSeeker() {
 		super();
