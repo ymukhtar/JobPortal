@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -28,14 +27,12 @@ public class Category implements Serializable{
 	@OneToMany(mappedBy="category")
 	private List<Vaccancy> vaccancyList=new ArrayList<Vaccancy>();
 	
-	
 	public Category() {
 		super();
 	}
 	
 	public Category(String title, String description) {
 		super();
-		
 		this.title = title;
 		this.description = description;
 	}
@@ -58,12 +55,9 @@ public class Category implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	@Override
 	public String toString() {
 		return "Category [categoryId=" + categoryId + ", title=" + title
 				+ ", description=" + description + "]";
 	}
-	
-	
 }
