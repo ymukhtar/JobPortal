@@ -2,8 +2,6 @@ package com.mum.jobportal.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,9 +11,7 @@ import com.mum.jobportal.domain.Authorities;
 
 @Repository
 @Transactional(propagation=Propagation.MANDATORY)
-public class AuthoritiesDAO implements IAuthoritiesDAO{
-	@Autowired
-	private SessionFactory sessionFactory;
+public class AuthoritiesDAO extends AbstractJobPortalDAO implements IAuthoritiesDAO{
 	
 	public void create(Authorities authorities) {
 		sessionFactory.getCurrentSession().persist(authorities);
@@ -29,6 +25,7 @@ public class AuthoritiesDAO implements IAuthoritiesDAO{
 	public Authorities get(long id) {
 		return (Authorities)sessionFactory.getCurrentSession().get(Authorities.class, id);
 	}
+	@SuppressWarnings("unchecked")
 	public List<Authorities> getAll() {
 		return sessionFactory.getCurrentSession().createQuery("From Authorities").list();
 	}
