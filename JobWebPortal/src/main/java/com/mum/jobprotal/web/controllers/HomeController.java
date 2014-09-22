@@ -30,6 +30,8 @@ public class HomeController {
 	public String getHome(Model model,HttpServletRequest request){
 		logger.info("ROLE_USER"+request.isUserInRole(JobPortalAuthorities.ROLE_ADMIN));
 		if(request.isUserInRole(JobPortalAuthorities.ROLE_ADMIN)){
+			List<Category> catList=service.getAllCategory();
+			model.addAttribute("catList", catList);
 			return "adminHome";
 		}
 		return "home";

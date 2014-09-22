@@ -11,10 +11,31 @@
 </head>
 <body>
 	<h3>Welcome Administrator user <sec:authentication property="principal.username" /></h3>
-	<ul class="nav nav-tabs" role="tablist">
-	  <li class="active"><a href="#">Home</a></li>
-	  <li><a href="<c:url value="/Categories"/>">Categories</a></li>
-	  <li><a href="#">Messages</a></li>
-	</ul>
+	<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">All Categories</div>
+  <div class="panel-body">
+    <p>
+    
+    </p>
+  </div>
+  <!-- Table -->
+  <table class="table">
+  	<thead>
+  		<tr>
+  			<th>Category</th>
+  			<th>Description</th>
+  		</tr>
+  	</thead>
+	  	<tbody>
+	    <c:forEach items = "${catList}" var="category">
+	    	<tr>
+	            <td><c:out value="${category.title}"/></td>
+	           <td> <c:out value="${category.description}"/></td>
+	         </tr>
+	     </c:forEach>
+	     </tbody>
+  </table>
+</div>
 </body>
 </html>
