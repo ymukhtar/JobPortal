@@ -27,7 +27,7 @@
 	</div>
 	<div class="container">
 		
-		<form:form class="form-horizontal" role="form" commandName="employer" action="saveEmployer" method="post">
+		<form:form class="form-horizontal" role="form" commandName="employer" action="registerEmployer" method="post">
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">User Name:</label>
 				<div class="col-sm-7">

@@ -3,6 +3,7 @@ package com.mum.jobprotal.web.controllers;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,11 +16,13 @@ import com.mum.jobportal.service.IJobPortalService;
 @Controller
 public class RegisterationsController {
 	
+	private static Logger logger=Logger.getLogger(RegisterationsController.class);
 	@Resource
 	private IJobPortalService jobPortalService;
 	
 	@RequestMapping(value="/registerEmployer",method=RequestMethod.GET)
-	public String getAllBooks(Model model){
+	public String getRegisterEmployerPage(Model model){
+		logger.info("**** Request for Registeration received");
 		model.addAttribute("employer",new Employer());
 		return "registerEmployer";
 	}
@@ -30,7 +33,7 @@ public class RegisterationsController {
 		return "registerationSuccess";
 	}
 	
-	@RequestMapping(value="/saveEmployer",method=RequestMethod.POST)
+	@RequestMapping(value="/registerEmployer",method=RequestMethod.POST)
 	public String registerEmployer(@Valid Employer employer,BindingResult result){
 		if(result.hasFieldErrors()){
 			return "registerEmployer";

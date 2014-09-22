@@ -116,7 +116,7 @@
 		<hr>
 
 		<footer>
-			<p>&copy; Company 2014</p>
+			<p>&copy; Company 2014 Developed By Yasir Mukhtar & Awais Tariq</p>
 		</footer>
 	</div>
 </body>
