@@ -26,6 +26,10 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="500000" />
+	</bean>
+	
 	<sec:global-method-security secured-annotations="enabled"></sec:global-method-security>
 	<!-- Lets us find resources (.html etc) through the default servlet -->
 	<mvc:default-servlet-handler/> 

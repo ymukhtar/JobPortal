@@ -94,7 +94,7 @@
 						<li>Store resumes and cover letters to use with job applications</li>
 					</ul>
 				<p>
-					<a class="btn btn-default" href="#" role="button">Register &raquo;</a>
+					<a class="btn btn-default" href="<c:url value="/registerJobSeeker"/>" role="button">Register &raquo;</a>
 				</p>
 			</div>
 			<div class="col-md-4">
