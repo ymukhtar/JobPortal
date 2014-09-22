@@ -30,6 +30,10 @@ public class User {
 	
 	private short enabled;
 	
+	public User(){
+		enabled=1;
+	}
+	
 	public String getUserName() {
 		return userName;
 	}
