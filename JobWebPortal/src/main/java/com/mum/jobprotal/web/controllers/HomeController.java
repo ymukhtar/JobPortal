@@ -44,6 +44,7 @@ public class HomeController {
 		return "home";
 	}
 	
+	
 	@Secured(JobPortalAuthorities.ROLE_ADMIN)
 	@RequestMapping(value="/Categories",method=RequestMethod.GET)
 	public String getCategories(Model model,HttpServletRequest request){
