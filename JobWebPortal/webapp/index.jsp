@@ -11,8 +11,8 @@
 		<title>Welcome to JobPortal</title>
 		<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 		<link href="<c:url value="/resources/css/jumbotron.css"/>" rel="stylesheet">
-		<script src="<c:url value="/resources/jQuery.min.js"/>"></script>
-    	<script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
+		<script src="<c:url value="/resources/js/jQuery.min.js"/>"></script>
+    	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

@@ -13,8 +13,8 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/jobPortal.css"/>"
 	rel="stylesheet">
-<script src="<c:url value="/resources/jQuery.min.js"/>"></script>
-<script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/js/jQuery.min.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-default" role="navigation">

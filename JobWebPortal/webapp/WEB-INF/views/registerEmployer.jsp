@@ -15,12 +15,19 @@
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/jobPortal.css"/>"
 	rel="stylesheet">
-<script src="<c:url value="/resources/jQuery.min.js"/>"></script>
-<script src="<c:url value="/resources/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/js/jQuery.min.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" langauge="javascript">
+	jQuery(document).ready(function(){
+			jQuery('#userName').val('');
+			jQuery('#password').val('');
+	});
+</script>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-default" role="navigation">
 		<div class="container">
+			<a class="navbar-brand" href="<c:url value="/index.jsp"/>">Job Portal Home</a>
 			<label class="navbar-brand"><strong>Welcome to Employers Registration Form</strong></label>
 		</div>
 	</div>
@@ -30,7 +37,7 @@
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">User Name:</label>
 				<div class="col-sm-7">
-					<form:input type="text" cssClass="form-control"  path="user.userName" name="userName" placeholder="User Name" autocomplete="off"/>
+					<form:input type="text" cssClass="form-control"  path="user.userName" id="userName" placeholder="User Name" autocomplete="off"/>
 				</div>
 				<div class="col-sm-3">
 					<form:errors path="user.userName" cssClass="error" />
