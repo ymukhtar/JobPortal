@@ -63,16 +63,26 @@ public class RegisterationsController {
 		return "redirect:/registerationSuccess";
 	}
 	@RequestMapping(value="/saveJobSeeker",method=RequestMethod.POST)
-	public String registerJobSeeker(@Valid JobSeeker jobSeeker,BindingResult result,@RequestParam(value = "resume", required = false) MultipartFile resume){
+	public String registerJobSeeker(@Valid JobSeeker jobSeeker,BindingResult result,@RequestParam(value = "resume", required = false) MultipartFile resume,RedirectAttributes redirectAttr){
+		User user=jobPortalService.getUser(jobSeeker.getUser().getUserName());
+		if(user!=null){
+			logger.info("User is not null");
+			result.rejectValue("user.userName", "error.user.userName", "An account already exists for this UserName.");
+		}
 		if(result.hasFieldErrors()){
 			return "registerJobSeeker";
 		}else{
+			//Add Authorities
+			 user=jobSeeker.getUser();
+			
+			user.addAuthority(new Authorities(user,JobPortalAuthorities.ROLE_USER));
+			user.addAuthority(new Authorities(user,JobPortalAuthorities.ROLE_EMPLOYER));
 			jobPortalService.createJobSeeker(jobSeeker);
-			System.out.println("Saving employer"+jobSeeker.toString());
-
+			redirectAttr.addFlashAttribute("message", "JobSeeker has been successfully registered with userName:"+jobSeeker.getUser().getUserName());
 		}
 		return "redirect:/registerationSuccess";
 	}
+	
 	@RequestMapping(value="/registerJobSeeker",method=RequestMethod.GET)
 	public String regesterJobSeeker(Model model){
 		model.addAttribute("jobSeeker",new JobSeeker());
