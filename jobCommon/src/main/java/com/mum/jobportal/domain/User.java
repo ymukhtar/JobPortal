@@ -20,6 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class User {
 	@Id
 	@Column(length=45)
+	@NotEmpty(message="User Name must be specified.")
 	private String userName;
 	@Column(length=45)
 	@NotEmpty

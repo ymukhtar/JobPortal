@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Cascade;
@@ -31,20 +32,23 @@ public class Employer implements Serializable{
 	@GeneratedValue
 	@Id
 	private long id;
-	@NotEmpty
+	@NotEmpty(message="Employer name must be provided.")
 	private String name;
-	@NotEmpty
+	@NotEmpty(message="Description of employer  must be provided")
 	private String description;
+	@Valid
 	@Embedded
 	private Address address;
+	@NotEmpty(message="Employer URL is Required")
 	@URL(message="WebSite URL is not valid!")
 	private String website;
+	
 	@Pattern(regexp="^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$",message="Phone Number is invalid")
 	private String phoneNumber;
 
 	@OneToMany(mappedBy="employer",cascade=CascadeType.ALL)
 	List<Vaccancy> vaccancyList=new ArrayList<Vaccancy>();
-	
+	@Valid
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userName")
 	private User user;

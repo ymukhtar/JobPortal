@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 /**
  * 
  * @author ymukhtar
@@ -17,7 +19,8 @@ public class Address implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -7531141046395118359L;
-	@Pattern(regexp="(?<=start)[\\d]+[A-Za-z0-9\\s,\\.]+?[\\d\\-]+|(?<=start)[A-Za-z0-9\\s,\\.]+?(?=end)",message="city should be valid!")
+	//@Pattern(regexp="(?<=start)[\\d]+[A-Za-z0-9\\s,\\.]+?[\\d\\-]+|(?<=start)[A-Za-z0-9\\s,\\.]+?(?=end)",message="Street should be valid!")
+	@NotEmpty
 	private String streetNo;
 	@Pattern(regexp="^[a-zA-Z]+(?:[\\s-][a-zA-Z]+)*$",message="city should be valid!")
 	private String city;

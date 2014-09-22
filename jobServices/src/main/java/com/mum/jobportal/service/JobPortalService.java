@@ -37,7 +37,6 @@ public class JobPortalService implements IJobPortalService {
 	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void createEmployer(Employer employer) {
-		// TODO Auto-generated method stub
 		employerDAO.create(employer);
 	}
 
