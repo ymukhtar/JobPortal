@@ -28,8 +28,8 @@ public class UserDAO extends AbstractJobPortalDAO implements IUserDAO{
 	public void delete(User user) {
 		sessionFactory.getCurrentSession().delete(user);
 	}
-	public User get(long id) {
-		return (User)sessionFactory.getCurrentSession().get(User.class, id);
+	public User get(String userName) {
+		return (User)sessionFactory.getCurrentSession().get(User.class, userName);
 	}
 	@SuppressWarnings("unchecked")
 	public List<User> getAll() {

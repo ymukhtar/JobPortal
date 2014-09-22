@@ -21,8 +21,7 @@
 <body>
 	<div class="navbar navbar-inverse navbar-default" role="navigation">
 		<div class="container">
-			<label class="navbar-brand"><strong>Welcome to
-					Employers Registration Form</strong></label>
+			<label class="navbar-brand"><strong>Welcome to Employers Registration Form</strong></label>
 		</div>
 	</div>
 	<div class="container">
@@ -31,7 +30,7 @@
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">User Name:</label>
 				<div class="col-sm-7">
-					<form:input type="text" cssClass="form-control"  path="user.userName" name="userName" placeholder="User Name"/>
+					<form:input type="text" cssClass="form-control"  path="user.userName" name="userName" placeholder="User Name" autocomplete="off"/>
 				</div>
 				<div class="col-sm-3">
 					<form:errors path="user.userName" cssClass="error" />
@@ -40,7 +39,7 @@
 			<div class="form-group">
 				<label for="password" class="col-sm-2 control-label">Password:</label>
 				<div class="col-sm-7">
-					<form:input type="password" cssClass="form-control" id="password" path="user.password" placeholder="password"/>
+					<form:input type="password" cssClass="form-control" id="password" path="user.password" placeholder="password" autocomplete="off"/>
 				</div>
 				<div class="col-sm-3">
 					<form:errors path="user.password" cssClass="error" />

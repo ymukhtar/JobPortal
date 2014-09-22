@@ -14,8 +14,7 @@ import com.mum.jobportal.domain.Employer;
 public class EmployerDAO extends AbstractJobPortalDAO implements IEmployerDAO{
 	
 	public void create(Employer employer) {
-		sessionFactory.getCurrentSession().save(employer);
-		System.out.println("saved");
+		sessionFactory.getCurrentSession().persist(employer);
 	}
 	public void update(Employer employer) {
 		sessionFactory.getCurrentSession().update(employer);

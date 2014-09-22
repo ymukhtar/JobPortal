@@ -128,9 +128,9 @@ public class JobPortalService implements IJobPortalService {
 		userDAO.delete(user);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
-	public User getUser(long id) {
+	public User getUser(String userName) {
 		// TODO Auto-generated method stub
-		return userDAO.get(id);
+		return userDAO.get(userName);
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<User> getAllUser() {

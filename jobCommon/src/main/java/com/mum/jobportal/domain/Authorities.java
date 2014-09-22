@@ -23,6 +23,16 @@ public class Authorities {
 	@Column(length = 45)
 	private String role;
 	
+	
+	
+	public Authorities() {
+		super();
+	}
+	public Authorities(User user, String role) {
+		super();
+		this.user = user;
+		this.role = role;
+	}
 	public long getUser_role_id() {
 		return user_role_id;
 	}

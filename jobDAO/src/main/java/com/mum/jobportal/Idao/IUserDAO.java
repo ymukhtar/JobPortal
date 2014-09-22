@@ -8,6 +8,6 @@ public interface IUserDAO {
 	public void create(User user);
 	public void update(User user);
 	public void delete(User user);
-	public User get(long id);
+	public User get(String userName);
 	public List<User> getAll();
 }

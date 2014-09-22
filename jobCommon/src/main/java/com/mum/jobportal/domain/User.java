@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * 
  * @author ymukhtar
@@ -57,6 +58,10 @@ public class User {
 	}
 	public void setEnabled(short enabled) {
 		this.enabled = enabled;
+	}
+	
+	public void addAuthority(Authorities authority){
+		this.authoritiesList.add(authority);
 	}
 	
 }

@@ -37,7 +37,7 @@ public interface IJobPortalService {
 	public void createUser(User user);
 	public void updateJobSeeker(User user);
 	public void deleteJobSeeker(User user);
-	public User getUser(long id);
+	public User getUser(String userName);
 	public List<User> getAllUser();
 	
 	public void createAuthorities(Authorities authorities);
