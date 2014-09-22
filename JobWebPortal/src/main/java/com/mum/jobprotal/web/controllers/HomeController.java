@@ -41,9 +41,11 @@ public class HomeController {
 			model.addAttribute("category", new Category());
 			return "adminHome";
 		}
+		if(request.isUserInRole(JobPortalAuthorities.ROLE_JOB_SEEKER)){
+			return "jobSeekerHome";
+		}
 		return "home";
 	}
-	
 	
 	@Secured(JobPortalAuthorities.ROLE_ADMIN)
 	@RequestMapping(value="/Categories",method=RequestMethod.GET)
