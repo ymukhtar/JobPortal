@@ -10,10 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mum.jobportal.domain.Authorities;
 import com.mum.jobportal.domain.Employer;
+import com.mum.jobportal.domain.JobSeeker;
 import com.mum.jobportal.domain.User;
 import com.mum.jobportal.service.IJobPortalService;
 import com.mum.jobportal.utils.JobPortalAuthorities;
@@ -58,5 +61,21 @@ public class RegisterationsController {
 			redirectAttr.addFlashAttribute("message", "Employer has been successfully registered with userName:"+employer.getUser().getUserName());
 		}
 		return "redirect:/registerationSuccess";
+	}
+	@RequestMapping(value="/saveJobSeeker",method=RequestMethod.POST)
+	public String registerJobSeeker(@Valid JobSeeker jobSeeker,BindingResult result,@RequestParam(value = "resume", required = false) MultipartFile resume){
+		if(result.hasFieldErrors()){
+			return "registerJobSeeker";
+		}else{
+			jobPortalService.createJobSeeker(jobSeeker);
+			System.out.println("Saving employer"+jobSeeker.toString());
+
+		}
+		return "redirect:/registerationSuccess";
+	}
+	@RequestMapping(value="/registerJobSeeker",method=RequestMethod.GET)
+	public String regesterJobSeeker(Model model){
+		model.addAttribute("jobSeeker",new JobSeeker());
+		return "registerJobSeeker";
 	}
 }
