@@ -25,6 +25,7 @@ import com.mum.jobportal.domain.Vaccancy;
 import com.mum.jobportal.service.IJobPortalService;
 import com.mum.jobportal.utils.CommonUtility;
 import com.mum.jobportal.utils.JobPortalAuthorities;
+import com.mum.jobportal.utils.VaccancyCount;
 
 @Controller
 public class HomeController {
@@ -51,8 +52,9 @@ public class HomeController {
 		}else if(request.isUserInRole(JobPortalAuthorities.ROLE_EMPLOYER)){
 			Employer employer=service.getEmployer(userDetails.getUsername());
 			request.getSession().setAttribute(Employer.class.getSimpleName(), employer);
+			List<VaccancyCount> vacanyCountList =service.getAllVacancyByEmployerAndCountApplications(employer.getId());
 			//model.addAttribute("vacancy_", new Vaccancy());
-			model.addAttribute("vaccancyList", employer.getVaccancyList());
+			model.addAttribute("vaccancyList", vacanyCountList);
 			return "employerHome";
 		}
 		return "home";
