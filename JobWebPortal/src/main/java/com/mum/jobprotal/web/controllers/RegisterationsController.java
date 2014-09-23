@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import com.mum.jobportal.domain.Employer;
 import com.mum.jobportal.domain.JobSeeker;
 import com.mum.jobportal.domain.User;
 import com.mum.jobportal.service.IJobPortalService;
+import com.mum.jobportal.service.SpringMailSender;
 import com.mum.jobportal.utils.JobPortalAuthorities;
 
 @Controller
@@ -27,6 +29,8 @@ public class RegisterationsController {
 	private static Logger logger=Logger.getLogger(RegisterationsController.class);
 	@Resource
 	private IJobPortalService jobPortalService;
+	@Autowired 
+	private SpringMailSender mailSender;
 	
 	@RequestMapping(value="/registerEmployer",method=RequestMethod.GET)
 	public String getRegisterEmployerPage(Model model){
@@ -78,6 +82,7 @@ public class RegisterationsController {
 			user.addAuthority(new Authorities(user,JobPortalAuthorities.ROLE_USER));
 			user.addAuthority(new Authorities(user,JobPortalAuthorities.ROLE_JOB_SEEKER));
 			jobPortalService.createJobSeeker(jobSeeker);
+			mailSender.sendMail("Registered "+user.getUserName(), "Your account has been created.", new String[]{jobSeeker.getEmailAddress()});
 			redirectAttr.addFlashAttribute("message", "JobSeeker has been successfully registered with userName:"+jobSeeker.getUser().getUserName());
 		}
 		return "redirect:/registerationSuccess";
