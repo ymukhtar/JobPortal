@@ -13,6 +13,7 @@ import com.mum.jobportal.Idao.IVaccancyDAO;
 import com.mum.jobportal.domain.Address;
 import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.utils.VaccancyCount;
 /**
  * 
  * @author yasirmukhtar
@@ -72,10 +73,24 @@ public class VaccancyDAO extends AbstractJobPortalDAO implements IVaccancyDAO{
 	}
 	@SuppressWarnings("unchecked")
 	public List<Vaccancy> getAllVacancyByEmployer(long employerID) {
-		Query query=sessionFactory.getCurrentSession().createQuery("From Vaccancy v where v.employer.id=:empID");
+		Query query=sessionFactory.getCurrentSession().createQuery(" From Vaccancy v where v.employer.id=:empID");
 		query.setLong("empID", employerID);
 		return query.list();
 	}
+	
+	/*
+	 * SELECT v.*,count(a.applicationId) 
+FROM jobportal.vaccancy v 
+left outer join jobportal.vaccancyapplication a on v.id=a.vaccancy_id
+group by v.id;
+	 * */
+	@SuppressWarnings("unchecked")
+	public List<VaccancyCount> getAllVacancyByEmployerAndCountApplications(long employerID) {
+		Query query=sessionFactory.getCurrentSession().createQuery("Select new com.mum.jobportal.utils.VaccancyCount(v,COUNT(app.applicationId)) From Vaccancy v LEFT OUTER JOIN v.applicationList app on v.id=a.vaccancy.id  where v.employer.id=:empID group by v.id");
+		query.setLong("empID", employerID);
+		return query.list();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public long getPagedVaccanyListCount(String addressString,String criteriaString) {
 		

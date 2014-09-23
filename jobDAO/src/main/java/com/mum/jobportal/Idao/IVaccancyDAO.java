@@ -3,6 +3,7 @@ package com.mum.jobportal.Idao;
 import java.util.List;
 
 import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.utils.VaccancyCount;
 
 public interface IVaccancyDAO {
 	public void create(Vaccancy vaccancy);
@@ -13,4 +14,5 @@ public interface IVaccancyDAO {
 	public List<Vaccancy> getAllVacancyByEmployer(long employerID);
 	public long getPagedVaccanyListCount(String addressString,String criteriaString);
 	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString);
+	public List<VaccancyCount> getAllVacancyByEmployerAndCountApplications(long employerID);
 }
