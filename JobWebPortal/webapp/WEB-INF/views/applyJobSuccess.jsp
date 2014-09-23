@@ -26,7 +26,7 @@
 	<c:if test="${not empty message}">
 	 	<p>Message:<strong>${message}</strong>
 		</p>
-		<p>Click <a href="<c:url value="/jobSeekerHome.jsp"/>">here</a> to visit home page and login</p>
+		<p>Click <a href="<c:url value="/home"/>">here</a> to visit home page and login</p>
 	</c:if>
 	</div>
 </body>

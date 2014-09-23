@@ -13,6 +13,7 @@ import com.mum.jobportal.Idao.ICatogoryDAO;
 import com.mum.jobportal.Idao.IEmployerDAO;
 import com.mum.jobportal.Idao.IJobSeekerDAO;
 import com.mum.jobportal.Idao.IUserDAO;
+import com.mum.jobportal.Idao.IVaccancyApplicationDAO;
 import com.mum.jobportal.Idao.IVaccancyDAO;
 import com.mum.jobportal.domain.Administrator;
 import com.mum.jobportal.domain.Authorities;
@@ -29,6 +30,7 @@ import com.mum.jobportal.domain.VaccancyApplication;
  *
  */
 @Service
+@Transactional(propagation=Propagation.REQUIRES_NEW)
 public class JobPortalService implements IJobPortalService {
 
 	@Autowired
@@ -45,251 +47,248 @@ public class JobPortalService implements IJobPortalService {
 	private IVaccancyDAO vaccancyDAO;
 	@Autowired
 	private IAdministratorDAO administratorDAO;
+	@Autowired
+	private IVaccancyApplicationDAO vaccancyApplicationDAO;
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void createEmployer(Employer employer) {
 		employerDAO.create(employer);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void updateEmployer(Employer employer) {
 		
 		employerDAO.update(employer);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void deleteEmployer(Employer employer) {
 		
 		employerDAO.delete(employer);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public Employer getEmployer(long id) {
 		
 		return employerDAO.get(id);
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public Employer getEmployer(String userName) {
 		
 		return employerDAO.get(userName);
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<Employer> getAllEmployer() {
 		
 		return employerDAO.getAll();
 	}
 	
 	//Administrator
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void createAdministrator(Administrator admin) {
 		administratorDAO.create(admin);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void updateAdministrator(Administrator admin) {
 		administratorDAO.update(admin);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void deleteAdministrator(Administrator admin) {
 		
 		administratorDAO.delete(admin);
 	}
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public Administrator getAdministrator(long id) {
 		
 		return administratorDAO.get(id);
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public Administrator getAdministrator(String userName) {
 		
 		return administratorDAO.get(userName);
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<Administrator> getAllAdministrators() {
 		
 		return administratorDAO.getAll();
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void createJobSeeker(JobSeeker jobSeeker) {
 		
 		jobSeekerDAO.create(jobSeeker);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void updateJobSeeker(JobSeeker jobSeeker) {
 		
 		jobSeekerDAO.update(jobSeeker);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void deleteJobSeeker(JobSeeker jobSeeker) {
 		
 		jobSeekerDAO.delete(jobSeeker);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public JobSeeker getJobSeeker(long id) {
 		
 		return jobSeekerDAO.get(id);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<JobSeeker> getAllJobSeeker() {
 		
 		return jobSeekerDAO.getAll();
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public JobSeeker get(String userName){
 		
 		return jobSeekerDAO.get(userName);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void createCategory(Category category) {
 		
 		categoryDAO.create(category);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void updateJobSeeker(Category category) {
 		
 		categoryDAO.update(category);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void deleteJobSeeker(Category category) {
 		
 		categoryDAO.delete(category);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public Category getCategory(long id) {
 		
 		return categoryDAO.get(id);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<Category> getAllCategory() {
 		
 		return categoryDAO.getAll();
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void createUser(User user) {
 		
 		userDAO.create(user);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void updateJobSeeker(User user) {
 		
 		userDAO.update(user);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void deleteJobSeeker(User user) {
 		
 		userDAO.delete(user);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public User getUser(String userName) {
 		
 		return userDAO.get(userName);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<User> getAllUser() {
 		
 		return userDAO.getAll();
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void createAuthorities(Authorities authorities) {
 		
 		authoritiesDAO.create(authorities);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void updateJobSeeker(Authorities authorities) {
 		
 		authoritiesDAO.update(authorities);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void deleteJobSeeker(Authorities authorities) {
 		
 		authoritiesDAO.delete(authorities);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public Authorities getAuthorities(long id) {
 		
 		return authoritiesDAO.get(id);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<Authorities> getAllAuthorities() {
 		
 		return authoritiesDAO.getAll();
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void createVaccancy(Vaccancy vaccancy) {
 		
 		vaccancyDAO.create(vaccancy);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void updateVaccancy(Vaccancy vaccancy) {
 		
 		vaccancyDAO.update(vaccancy);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public void deleteVaccancy(Vaccancy vaccancy) {
 		
 		vaccancyDAO.delete(vaccancy);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public Vaccancy getVaccancy(long id) {
 		
 		return vaccancyDAO.get(id);
 	}
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<Vaccancy> getAllVaccancy() {
 		
 		return vaccancyDAO.getAll();
 	}
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<Vaccancy> getAllVaccancyByEmployer(long employerID) {
 		
 		return vaccancyDAO.getAllVacancyByEmployer(employerID);
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public long getPagedVaccanyListCount(String searchCriteria, String addressSearch){
 		return vaccancyDAO.getPagedVaccanyListCount(addressSearch, searchCriteria);
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
+
 	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString){
 		return vaccancyDAO.getPagedVaccanyList(start, fetchSize, addressString, criteriaString);
 	}
 
 	public void create(VaccancyApplication vaccancyApplication) {
 		// TODO Auto-generated method stub
-		
+		vaccancyApplicationDAO.create(vaccancyApplication);
 	}
 
-	public void update(VaccancyApplication vaccancy) {
+	public void update(VaccancyApplication vaccancyApplication) {
 		// TODO Auto-generated method stub
-		
+		vaccancyApplicationDAO.update(vaccancyApplication);
 	}
 
-	public void delete(VaccancyApplication vaccancy) {
+	public void delete(VaccancyApplication vaccancyApplication) {
 		// TODO Auto-generated method stub
-		
+		vaccancyApplicationDAO.delete(vaccancyApplication);
 	}
 
 	public VaccancyApplication get(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return vaccancyApplicationDAO.get(id);
 	}
 
 	public List<VaccancyApplication> getAll() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<VaccancyApplication> getAllVacancyByEmployer(long employerID) {
-		// TODO Auto-generated method stub
-		return null;
+		return vaccancyApplicationDAO.getAll();
 	}
 }

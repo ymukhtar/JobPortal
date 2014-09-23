@@ -68,9 +68,8 @@ public interface IJobPortalService {
 	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString);
 	
 	public void create(VaccancyApplication vaccancyApplication);
-	public void update(VaccancyApplication vaccancy);
-	public void delete(VaccancyApplication vaccancy);
+	public void update(VaccancyApplication vaccancyApplication);
+	public void delete(VaccancyApplication vaccancyApplication);
 	public VaccancyApplication get(long id);
 	public List<VaccancyApplication> getAll();
-	public List<VaccancyApplication> getAllVacancyByEmployer(long employerID);
 }
