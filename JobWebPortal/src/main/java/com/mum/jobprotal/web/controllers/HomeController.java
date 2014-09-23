@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Employer;
 import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.domain.VaccancyApplication;
 import com.mum.jobportal.service.IJobPortalService;
 import com.mum.jobportal.utils.CommonUtility;
 import com.mum.jobportal.utils.JobPortalAuthorities;
@@ -83,6 +84,30 @@ public class HomeController {
 		}
 		
 		return "jobSeekerHome";
+	}
+	
+	@RequestMapping(value="/viewAllApplication",method=RequestMethod.GET)
+	public String getAllApplications(Model model,@RequestParam("currentPage") int currentPage){
+		
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		long count=service.getAllVacancyByJobSeekerCount(userDetails.getUsername());
+		int totalPages=(int)Math.ceil(1.0*count/CommonUtility.FETCH_SIZE);
+		if(count==0){
+			model.addAttribute("message", "No jobs found matching your criteria!");
+		}else{
+			model.addAttribute("count", count);
+			int startIndex=(currentPage-1)*CommonUtility.FETCH_SIZE;
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("fetchSize", CommonUtility.FETCH_SIZE);
+			model.addAttribute("totalPages", totalPages);
+			model.addAttribute("message", "Total application you applied for "+count);
+			int fetchSize=(int)( (startIndex+CommonUtility.FETCH_SIZE)<count?CommonUtility.FETCH_SIZE:(count-startIndex));
+			
+			List<VaccancyApplication> vaccancyApplicationList=service.getAllVacancyByJobSeekerApplications(userDetails.getUsername());
+			model.addAttribute("applicationList", vaccancyApplicationList);
+		}
+		
+		return "alljobApplication";
 	}
 
 	@Secured(JobPortalAuthorities.ROLE_EMPLOYER)

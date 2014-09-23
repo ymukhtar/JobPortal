@@ -300,4 +300,15 @@ public class JobPortalService implements IJobPortalService {
 	public List<VaccancyCount> getAllVacancyByEmployerAndCountApplications(long employerID) {
 		return vaccancyDAO.getAllVacancyByEmployerAndCountApplications(employerID);
 	}
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public List<VaccancyApplication> getAllVacancyByJobSeekerApplications(
+			String username) {
+		// TODO Auto-generated method stub
+		return vaccancyApplicationDAO.getAllVacancyByJobSeekerApplications(username);
+	}
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public long getAllVacancyByJobSeekerCount(String username) {
+		// TODO Auto-generated method stub
+		return vaccancyApplicationDAO.getAllVacancyByJobSeekerCount(username);
+	}
 }

@@ -43,6 +43,13 @@
 		
 	}
 	
+	function viewAllApplication(){
+		
+		var urlA="<%=request.getContextPath()%>/viewAllApplication?currentPage=1";
+		window.location.href=urlA;
+		
+	}
+	
 	jQuery(document).ready(function(){
 		jQuery('#pageSelection').val('${currentPage}');
 		
@@ -78,6 +85,8 @@
 		</div>
 	</div>
 </sec:authorize>
+
+
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 		<div class="container">
@@ -89,6 +98,10 @@
 					as Job Seeker
 				</sec:authorize>
 				</h3>
+				<div class="form-group form-group-lg" style='margin-left: 85%'>
+					<a class="btn btn-default" role="button" onclick="viewAllApplication()">
+				<span class="glyphicon glyphicon-search"></span>View All Applications</a>
+				</div>
 				<p>Search from Millions of Jobs</p>
 			</div>
 			<div class="row">
@@ -115,6 +128,7 @@
 		<table id="example" class="table table-striped table-bordered" cellspacing="20" width="100%">
 			<thead>
 				<tr>
+					<th>Sr #</th>
 					<th>Job Title</th>
 					<th>City</th>
 					<th>Salary</th>
@@ -126,8 +140,9 @@
 				</tr>
 			<thead>
 			<tbody>
-			<c:forEach var="vaccancy" items="${vaccancyList}">
+			<c:forEach var="vaccancy" items="${vaccancyList}" varStatus="loop">
 				<tr>
+					<td>${loop.index}</td>
 					<td>${vaccancy.title}</td>
 					<td>${vaccancy.address.city}</td>
 					<td>${vaccancy.salaryRange}</td>

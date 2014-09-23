@@ -74,6 +74,8 @@ public interface IJobPortalService {
 	public VaccancyApplication get(long id);
 	public List<VaccancyApplication> getAll();
 	public List<VaccancyApplication> getAllVacancyByEmployer(long employerID);
+	
 	public List<VaccancyCount> getAllVacancyByEmployerAndCountApplications(long employerID);
-
+	public List<VaccancyApplication> getAllVacancyByJobSeekerApplications(String username);
+	public long getAllVacancyByJobSeekerCount(String username);
 }
