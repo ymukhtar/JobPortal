@@ -29,7 +29,7 @@ public class TestDataInserter {
 	@Autowired
 	IJobPortalService jobPortalService;
 	
-	//@PostConstruct
+//	@PostConstruct
 	public void init() throws ParseException{
 		
 		logger.info("------------------Creating admin user------------------");

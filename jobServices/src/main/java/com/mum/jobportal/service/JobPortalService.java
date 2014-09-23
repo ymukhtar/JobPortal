@@ -246,4 +246,14 @@ public class JobPortalService implements IJobPortalService {
 		
 		return vaccancyDAO.getAllVacancyByEmployer(employerID);
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public long getPagedVaccanyListCount(String searchCriteria, String addressSearch){
+		return vaccancyDAO.getPagedVaccanyListCount(addressSearch, searchCriteria);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString){
+		return vaccancyDAO.getPagedVaccanyList(start, fetchSize, addressString, criteriaString);
+	}
 }

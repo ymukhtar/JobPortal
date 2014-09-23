@@ -5,5 +5,5 @@ package com.mum.jobportal.utils;
  *
  */
 public class CommonUtility {
-	
+	public static int FETCH_SIZE=10;
 }

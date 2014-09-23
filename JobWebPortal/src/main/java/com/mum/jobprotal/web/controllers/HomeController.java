@@ -13,14 +13,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Employer;
 import com.mum.jobportal.domain.Vaccancy;
 import com.mum.jobportal.service.IJobPortalService;
+import com.mum.jobportal.utils.CommonUtility;
 import com.mum.jobportal.utils.JobPortalAuthorities;
 
 @Controller
@@ -43,6 +46,7 @@ public class HomeController {
 			return "adminHome";
 		}
 		else if(request.isUserInRole(JobPortalAuthorities.ROLE_JOB_SEEKER)){
+			model.addAttribute("currentPage",1);
 			return "jobSeekerHome";
 		}else if(request.isUserInRole(JobPortalAuthorities.ROLE_EMPLOYER)){
 			Employer employer=service.getEmployer(userDetails.getUsername());
@@ -54,6 +58,30 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/JobSearch",method=RequestMethod.GET)
+	public String getJobSeekerHome(Model model,HttpServletRequest request,@RequestParam("currentPage") int currentPage,@RequestParam("searchString") String searchString,@RequestParam("searchAddress") String searchAddress){
+		
+		long count=service.getPagedVaccanyListCount(searchString, searchAddress);
+		int totalPages=(int)Math.ceil(1.0*count/CommonUtility.FETCH_SIZE);
+		model.addAttribute("searchString", searchString);
+		model.addAttribute("searchAddress", searchAddress);
+		if(count==0){
+			model.addAttribute("message", "No jobs found matching your criteria!");
+		}else{
+			model.addAttribute("count", count);
+			int startIndex=(currentPage-1)*CommonUtility.FETCH_SIZE;
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("fetchSize", CommonUtility.FETCH_SIZE);
+			model.addAttribute("totalPages", totalPages);
+			model.addAttribute("message", "Total jobs found matching your criteria "+count);
+			int fetchSize=(int)( (startIndex+CommonUtility.FETCH_SIZE)<count?CommonUtility.FETCH_SIZE:(count-startIndex));
+			
+			List<Vaccancy> vaccancyList=service.getPagedVaccanyList(startIndex, fetchSize, searchAddress, searchString);
+			model.addAttribute("vaccancyList", vaccancyList);
+		}
+		
+		return "jobSeekerHome";
+	}
 
 	@Secured(JobPortalAuthorities.ROLE_EMPLOYER)
 	@RequestMapping(value="/addVacancy",method=RequestMethod.GET)

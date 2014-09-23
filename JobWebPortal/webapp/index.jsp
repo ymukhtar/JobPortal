@@ -13,6 +13,17 @@
 		<link href="<c:url value="/resources/css/jumbotron.css"/>" rel="stylesheet">
 		<script src="<c:url value="/resources/js/jQuery.min.js"/>"></script>
     	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+    	
+    	<script type="text/javascript">
+    	
+	    	function findJobs(){
+	    		
+	    		var urlA="<%=request.getContextPath()%>/JobSearch?currentPage=1&searchString="+jQuery('#searchType').val()+"&searchAddress="+jQuery('#searchAddress').val();
+	    		window.location.href=urlA;
+	    		
+	    	}
+    	
+    	</script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -51,13 +62,13 @@
 			<div class="row">
 				<form class="form-horizontal" role="form" method="POST"  action="<c:url value='/searchJobs'/>">
 					<div class="form-group form-group-lg">	
-						<input type="text" name="searchType" placeholder="Job Title, Keywords or Company Name" class="form-control">
+						<input type="text" name="searchType" id="searchType" placeholder="Job Title, Keywords or Company Name" class="form-control">
 					</div>
 					<div class="form-group form-group-lg">
-						<input name="searchAddress" type="text" placeholder="City and State or Zip Code" class="form-control">
+						<input name="searchAddress" type="text" id="searchAddress" placeholder="City and State or Zip Code" class="form-control">
 					</div>
 					<div class="form-group form-group-lg">
-						<a class="btn btn-default" role="button"><span class="glyphicon glyphicon-search"></span>&nbsp;Find Jobs</a>
+						<a class="btn btn-default" onclick="findJobs()" role="button"><span class="glyphicon glyphicon-search"></span>&nbsp;Find Jobs</a>
 						</div>
 				</form>
 			</div>

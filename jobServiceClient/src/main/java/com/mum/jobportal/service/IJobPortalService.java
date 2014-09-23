@@ -62,4 +62,6 @@ public interface IJobPortalService {
 	public Vaccancy getVaccancy(long id);
 	public List<Vaccancy> getAllVaccancy();
 	public List<Vaccancy> getAllVaccancyByEmployer(long employerID);
+	public long getPagedVaccanyListCount(String searchCriteria, String addressSearch);
+	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString);
 }

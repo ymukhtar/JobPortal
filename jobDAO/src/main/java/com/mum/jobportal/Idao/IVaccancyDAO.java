@@ -11,4 +11,6 @@ public interface IVaccancyDAO {
 	public Vaccancy get(long id);
 	public List<Vaccancy> getAll();
 	public List<Vaccancy> getAllVacancyByEmployer(long employerID);
+	public long getPagedVaccanyListCount(String addressString,String criteriaString);
+	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString);
 }
