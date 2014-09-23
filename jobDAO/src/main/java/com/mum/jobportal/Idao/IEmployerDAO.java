@@ -10,4 +10,5 @@ public interface IEmployerDAO {
 	public void delete(Employer employer);
 	public Employer get(long id);
 	public List<Employer> getAll();
+	public Employer get(String userName);
 }

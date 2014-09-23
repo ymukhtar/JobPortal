@@ -76,7 +76,7 @@ public class RegisterationsController {
 			 user=jobSeeker.getUser();
 			
 			user.addAuthority(new Authorities(user,JobPortalAuthorities.ROLE_USER));
-			user.addAuthority(new Authorities(user,JobPortalAuthorities.ROLE_EMPLOYER));
+			user.addAuthority(new Authorities(user,JobPortalAuthorities.ROLE_JOB_SEEKER));
 			jobPortalService.createJobSeeker(jobSeeker);
 			redirectAttr.addFlashAttribute("message", "JobSeeker has been successfully registered with userName:"+jobSeeker.getUser().getUserName());
 		}

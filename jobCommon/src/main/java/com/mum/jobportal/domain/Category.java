@@ -55,6 +55,15 @@ public class Category implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public List<Vaccancy> getVaccancyList() {
+		return vaccancyList;
+	}
+
+	public void setVaccancyList(List<Vaccancy> vaccancyList) {
+		this.vaccancyList = vaccancyList;
+	}
+
 	@Override
 	public String toString() {
 		return "Category [categoryId=" + categoryId + ", title=" + title

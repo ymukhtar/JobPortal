@@ -2,6 +2,7 @@ package com.mum.jobportal.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,5 +34,11 @@ public class VaccancyDAO extends AbstractJobPortalDAO implements IVaccancyDAO{
 	@SuppressWarnings("unchecked")
 	public List<Vaccancy> getAll() {
 		return sessionFactory.getCurrentSession().createQuery("From Vaccancy").list();
+	}
+	@SuppressWarnings("unchecked")
+	public List<Vaccancy> getAllVacancyByEmployer(long employerID) {
+		Query query=sessionFactory.getCurrentSession().createQuery("From Vaccancy v where v.employer.id=:empID");
+		query.setLong("empID", employerID);
+		return query.list();
 	}
 }

@@ -22,7 +22,7 @@ import com.mum.jobportal.domain.Category;
 @Transactional(propagation=Propagation.MANDATORY)
 public class CatogaryDAO extends AbstractJobPortalDAO implements ICatogoryDAO {
 	public void create(Category category) {
-		sessionFactory.getCurrentSession().persist(category);
+		sessionFactory.getCurrentSession().save(category);
 	}
 	public void update(Category category) {
 		sessionFactory.getCurrentSession().update(category);
