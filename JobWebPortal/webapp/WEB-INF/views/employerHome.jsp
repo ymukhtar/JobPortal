@@ -33,7 +33,7 @@
 	}
 	
 	tbody {
-		height: 120px;
+		height: 180px;
 		overflow-y: auto;
 	}
 	
