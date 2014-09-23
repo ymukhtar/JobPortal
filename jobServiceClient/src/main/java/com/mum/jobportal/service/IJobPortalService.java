@@ -9,6 +9,7 @@ import com.mum.jobportal.domain.Employer;
 import com.mum.jobportal.domain.JobSeeker;
 import com.mum.jobportal.domain.User;
 import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.domain.VaccancyApplication;
 /**
  * 
  * @author Awais Tariq
@@ -37,6 +38,7 @@ public interface IJobPortalService {
 	public void deleteJobSeeker(JobSeeker jobSeeker);
 	public JobSeeker getJobSeeker(long id);
 	public List<JobSeeker> getAllJobSeeker();
+	public JobSeeker get(String userName);
 	
 	public void createCategory(Category category);
 	public void updateJobSeeker(Category category);
@@ -64,4 +66,11 @@ public interface IJobPortalService {
 	public List<Vaccancy> getAllVaccancyByEmployer(long employerID);
 	public long getPagedVaccanyListCount(String searchCriteria, String addressSearch);
 	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString);
+	
+	public void create(VaccancyApplication vaccancyApplication);
+	public void update(VaccancyApplication vaccancy);
+	public void delete(VaccancyApplication vaccancy);
+	public VaccancyApplication get(long id);
+	public List<VaccancyApplication> getAll();
+	public List<VaccancyApplication> getAllVacancyByEmployer(long employerID);
 }
