@@ -35,6 +35,15 @@ public class User {
 		enabled=1;
 	}
 	
+	
+	public User(String userName, String password) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		enabled=1;
+	}
+
+
 	public String getUserName() {
 		return userName;
 	}

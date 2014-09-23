@@ -23,8 +23,6 @@ public class Authorities {
 	@Column(length = 45)
 	private String role;
 	
-	
-	
 	public Authorities() {
 		super();
 	}
@@ -32,6 +30,7 @@ public class Authorities {
 		super();
 		this.user = user;
 		this.role = role;
+		this.user.addAuthority(this);
 	}
 	public long getUser_role_id() {
 		return user_role_id;

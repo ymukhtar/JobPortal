@@ -2,6 +2,7 @@ package com.mum.jobportal.service;
 
 import java.util.List;
 
+import com.mum.jobportal.domain.Administrator;
 import com.mum.jobportal.domain.Authorities;
 import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Employer;
@@ -22,6 +23,14 @@ public interface IJobPortalService {
 	public Employer getEmployer(long id);
 	public Employer getEmployer(String userName);
 	public List<Employer> getAllEmployer();
+	
+	
+	public void createAdministrator(Administrator admin);
+	public void updateAdministrator(Administrator admin);
+	public void deleteAdministrator(Administrator admin);
+	public Administrator getAdministrator(long admin);
+	public Administrator getAdministrator(String adminUser);
+	public List<Administrator> getAllAdministrators();
 	
 	public void createJobSeeker(JobSeeker jobSeeker);
 	public void updateJobSeeker(JobSeeker jobSeeker);

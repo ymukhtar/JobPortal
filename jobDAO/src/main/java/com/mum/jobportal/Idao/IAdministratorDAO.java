@@ -10,4 +10,5 @@ public interface IAdministratorDAO {
 	public void delete(Administrator admininstrator);
 	public Administrator get(long id);
 	public List<Administrator> getAll();
+	public Administrator get(String userName);
 }

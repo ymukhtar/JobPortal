@@ -64,7 +64,7 @@
 	class="org.springframework.mail.SimpleMailMessage"> 
 	<property name="from" value="job.portal.mum@gmail.com" />
 	<property name="to" value="yasir1@gmail.com" />
-	<property name="subject" value="Send Email using Spring and Java" />
+	<property name="subject" value="Account Created." />
 	<property name="text">
 	   <value>
 		<![CDATA[
