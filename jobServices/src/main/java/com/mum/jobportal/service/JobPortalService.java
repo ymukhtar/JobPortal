@@ -13,6 +13,7 @@ import com.mum.jobportal.Idao.ICatogoryDAO;
 import com.mum.jobportal.Idao.IEmployerDAO;
 import com.mum.jobportal.Idao.IJobSeekerDAO;
 import com.mum.jobportal.Idao.IUserDAO;
+import com.mum.jobportal.Idao.IVaccancyApplicationDAO;
 import com.mum.jobportal.Idao.IVaccancyDAO;
 import com.mum.jobportal.domain.Administrator;
 import com.mum.jobportal.domain.Authorities;
@@ -46,6 +47,8 @@ public class JobPortalService implements IJobPortalService {
 	private IVaccancyDAO vaccancyDAO;
 	@Autowired
 	private IAdministratorDAO administratorDAO;
+	@Autowired
+	private IVaccancyApplicationDAO vaccancyApplicationDAO;
 	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void createEmployer(Employer employer) {
@@ -263,32 +266,32 @@ public class JobPortalService implements IJobPortalService {
 	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString){
 		return vaccancyDAO.getPagedVaccanyList(start, fetchSize, addressString, criteriaString);
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void create(VaccancyApplication vaccancyApplication) {
 		// TODO Auto-generated method stub
-		
+		vaccancyApplicationDAO.create(vaccancyApplication);
 	}
-
-	public void update(VaccancyApplication vaccancy) {
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public void update(VaccancyApplication vaccancyApplication) {
 		// TODO Auto-generated method stub
-		
+		vaccancyApplicationDAO.update(vaccancyApplication);
 	}
-
-	public void delete(VaccancyApplication vaccancy) {
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public void delete(VaccancyApplication vaccancyApplication) {
 		// TODO Auto-generated method stub
-		
+		vaccancyApplicationDAO.delete(vaccancyApplication);
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public VaccancyApplication get(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return vaccancyApplicationDAO.get(id);
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<VaccancyApplication> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return vaccancyApplicationDAO.getAll();
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<VaccancyApplication> getAllVacancyByEmployer(long employerID) {
 		// TODO Auto-generated method stub
 		return null;

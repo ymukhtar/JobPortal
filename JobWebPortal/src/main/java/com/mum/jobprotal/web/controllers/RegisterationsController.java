@@ -49,7 +49,6 @@ public class RegisterationsController {
 	
 	@RequestMapping(value="/registerationSuccess",method=RequestMethod.GET)
 	public String getRegisterationSuccess(Model model){
-		model.addAttribute("employer",new Employer());
 		return "registerationSuccess";
 	}
 	
@@ -109,8 +108,14 @@ public class RegisterationsController {
 		JobSeeker jobSeeker=jobPortalService.get(userDetails.getUsername());
 		
 		VaccancyApplication application=new VaccancyApplication(vaccancy, jobSeeker, new Date(), JobApplicationStatus.RECIEVED);
+		jobPortalService.create(application);
 		
 		redirectAttr.addFlashAttribute("message", "Your application for "+ vaccancy.getTitle()+" vaccancy sent to employer successfully");
-		return "redirect:/applyJobSuccess.jsp";
+		return "redirect:/applyJobSuccess";
+	}
+	
+	@RequestMapping(value="/applyJobSuccess",method=RequestMethod.GET)
+	public String getJobApplySuccess(Model model){
+		return "applyJobSuccess";
 	}
 }
