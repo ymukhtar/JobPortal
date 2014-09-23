@@ -14,7 +14,10 @@
         <dependent-module archiveName="jobServiceClient-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/jobServiceClient/jobServiceClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="jobServices-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/jobServices/jobServices">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/JobWebPortal/build/classes"/>
-        <property name="context-root" value="JobWebPortal"/>
+        <property name="context-root" value="JobWebPortal2"/>
     </wb-module>
 </project-modules>

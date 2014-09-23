@@ -23,6 +23,7 @@ import com.mum.jobportal.domain.JobSeeker;
 import com.mum.jobportal.domain.User;
 import com.mum.jobportal.domain.Vaccancy;
 import com.mum.jobportal.domain.VaccancyApplication;
+import com.mum.jobportal.utils.VaccancyCount;
 
 /**
  * @author awais-tariq
@@ -291,4 +292,15 @@ public class JobPortalService implements IJobPortalService {
 		// TODO Auto-generated method stub
 		return vaccancyApplicationDAO.getAll();
 	}
+
+	public List<VaccancyCount> getAllVacancyByEmployerAndCountApplications(long employerID) {
+		return vaccancyDAO.getAllVacancyByEmployerAndCountApplications(employerID);
+	}
+
+
+	public List<VaccancyApplication> getAllVacancyByEmployer(long employerID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
