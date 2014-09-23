@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mum.jobportal.domain.Authorities;
 import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Employer;
 import com.mum.jobportal.domain.Vaccancy;
@@ -48,6 +46,7 @@ public class HomeController {
 			return "jobSeekerHome";
 		}else if(request.isUserInRole(JobPortalAuthorities.ROLE_EMPLOYER)){
 			Employer employer=service.getEmployer(userDetails.getUsername());
+			request.getSession().setAttribute(Employer.class.getSimpleName(), employer);
 			//model.addAttribute("vacancy_", new Vaccancy());
 			model.addAttribute("vaccancyList", employer.getVaccancyList());
 			return "employerHome";
@@ -61,14 +60,21 @@ public class HomeController {
 	public String getVacancyAddPage(Model model,HttpServletRequest request){
 		List<Category> catList=service.getAllCategory();
 		model.addAttribute("catList", catList);
-		model.addAttribute("vacancy_", new Vaccancy());
-		return "AddVacancy";
+		model.addAttribute("vaccancy", new Vaccancy());
+		return "addVacancyForm";
 	}
 	
 	@Secured(JobPortalAuthorities.ROLE_EMPLOYER)
 	@RequestMapping(value="/addVacancy",method=RequestMethod.POST)
-	public String getVacancyAddPage(@Valid Vaccancy vacancy,RedirectAttributes redirectAttr){
-		service.createVaccancy(vacancy);
+	public String addVacancy(Model model,@Valid Vaccancy vaccancy,BindingResult result,RedirectAttributes redirectAttr,HttpServletRequest request)	{
+		if(result.hasFieldErrors()){
+			List<Category> catList=service.getAllCategory();
+			model.addAttribute("catList", catList);
+			return "addVacancyForm";
+		}
+		Employer employer=(Employer)request.getSession().getAttribute(Employer.class.getSimpleName());
+		vaccancy.setEmployer(employer);
+		service.createVaccancy(vaccancy);
 		redirectAttr.addFlashAttribute("message", "Vacancy has been successfully created");
 		return "redirect:/home";
 	}
@@ -80,6 +86,7 @@ public class HomeController {
 		model.addAttribute("catList", catList);
 		return "allCategories";
 	}
+	
 	@Secured(JobPortalAuthorities.ROLE_ADMIN)
 	@RequestMapping(value="/saveCategory",method=RequestMethod.POST)
 	public String saveCategories(Model model,@Valid Category category,BindingResult result){

@@ -45,6 +45,7 @@ public class Vaccancy implements Serializable{
 	private String salaryRange;
 	@Temporal(TemporalType.DATE)
 	private Date vaccancyCreationDate;
+	
 	@Temporal(TemporalType.DATE)
 	private Date vaccnayExpiryDate;
 	

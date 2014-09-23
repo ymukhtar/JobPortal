@@ -50,10 +50,13 @@
 </head>
 <body>
 	<br/>
+	<br/>
+	<br/>
 	<h4>
 		Welcome Employer user
 		<sec:authentication property="principal.username" />
 	</h4>
+	<hr/>
 	<h4><a class="btn btn-default" href="<c:url value="/addVacancy"/>" role="button">Add Vacancy &raquo;</a></h4>
 	<div class="container">
 	<h3>Current Vacancies created..</h3>
@@ -61,6 +64,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>Serial</th>
 					<th>Category</th>
 					<th>Title</th>
 					<th>Description</th>
@@ -69,10 +73,12 @@
 			</thead>
 			<tbody>
 				<tr>
-					<c:forEach items="${vaccancyList}" var="vaccancy">
+					<c:forEach items="${vaccancyList}" var="vaccancy" varStatus="status">
 						<tr>
+							<td>${status.count}</td>
 							<td><c:out value="${vaccancy.title}" /></td>
-							<td><c:out value="${category.description}" /></td>
+							<td><c:out value="${vaccancy.title}" /></td>
+							<td><c:out value="${vaccancy.category.title}" /></td>
 						</tr>
 					</c:forEach>
 				</tr>

@@ -34,9 +34,9 @@
 	<div class="container">
 		
 			
-		<form:form class="form-horizontal" role="form" commandName="vacancy" action="addVacancy" method="post">
+		<form:form class="form-horizontal" role="form" commandName="vaccancy" action="addVacancy" method="post">
 			<div class="form-group">
-				<label for="categoryID" class="col-sm-3 control-label">Category:</label>
+				<label for="categoryID" class="col-sm-2 control-label">Category:</label>
 				<div class="col-sm-7">
 					<form:select path="category.categoryId" id="categoryID" cssClass="form-control">
 						<c:forEach items="${catList}" var="category">
@@ -44,49 +44,49 @@
 						</c:forEach>
 					</form:select>	
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<form:errors path="category.categoryId" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="title" class="col-sm-3 control-label">Title:</label>
+				<label for="title" class="col-sm-2 control-label">Title:</label>
 				<div class="col-sm-7">
 					<form:input path="title" cssClass="form-control"/>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<form:errors path="title" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="title" class="col-sm-3 control-label">Salary Range:</label>
-					<div class="col-sm-5">
+				<label for="title" class="col-sm-2 control-label">Salary Range:</label>
+					<div class="col-sm-7">
 						<form:input path="salaryRange" cssClass="form-control"/>
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<form:errors path="salaryRange" cssClass="error" />
 					</div>
 			</div>
 			<div class="form-group">
-				<label for="title" class="col-sm-3 control-label">Expiry Date(mm/dd/yyyy):</label>
+				<label for="title" class="col-sm-2 control-label">Expiry Date(mm/dd/yyyy):</label>
 					<div class="col-sm-7">
-						<form:input path="salaryRange" type="text" cssClass="form-control"/>
+						<form:input path="vaccnayExpiryDate"  cssClass="form-control"/>
 					</div>
-					<div class="col-sm-2">
-						<form:errors path="salaryRange" cssClass="error" />
+					<div class="col-sm-3">
+						<form:errors path="vaccnayExpiryDate" cssClass="error" />
 					</div>
 			</div>
 			<div class="form-group">
-				<label for="description" class="col-sm-3 control-label">Description:</label>
+				<label for="description" class="col-sm-2 control-label">Description:</label>
 				<div class="col-sm-7">
 					<form:textarea path="description" cssClass="form-control"/>
 				</div>
-				<div class="col-sm-2">
-					<form:errors path="category.categoryId" cssClass="error" />
+				<div class="col-sm-3">
+					<form:errors path="description" cssClass="error" />
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label for="streetNo" class="col-sm-3 control-label">Street Address:</label>
+				<label for="streetNo" class="col-sm-2 control-label">Street Address:</label>
 				<div class="col-sm-7">
 					<form:input type="text" cssClass="form-control" id="streetNo" path="address.streetNo" placeholder="Street Address"/>
 				</div>
@@ -96,7 +96,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="city" class="col-sm-3 control-label">City:</label>
+				<label for="city" class="col-sm-2 control-label">City:</label>
 				<div class="col-sm-7">
 					<form:input type="text" cssClass="form-control" id="city" path="address.city" placeholder="City"/>
 				</div>
@@ -106,7 +106,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="state" class="col-sm-3 control-label">State:</label>
+				<label for="state" class="col-sm-2 control-label">State:</label>
 				<div class="col-sm-7">
 					<form:input type="text" cssClass="form-control" id="state" path="address.state" placeholder="State"/>
 				</div>
@@ -115,7 +115,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="zip" class="col-sm-3 control-label">ZIP Code:</label>
+				<label for="zip" class="col-sm-2 control-label">ZIP Code:</label>
 				<div class="col-sm-7">
 					<form:input type="text" cssClass="form-control" id="zip" path="address.zip" placeholder="Zip Code"/>
 				</div>
