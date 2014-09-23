@@ -73,12 +73,13 @@
 			</thead>
 			<tbody>
 				<tr>
-					<c:forEach items="${vaccancyList}" var="vaccancy" varStatus="status">
+					<c:forEach items="${vaccancyList}" var="vaccancyCount" varStatus="status">
 						<tr>
 							<td>${status.count}</td>
-							<td><c:out value="${vaccancy.title}" /></td>
-							<td><c:out value="${vaccancy.title}" /></td>
-							<td><c:out value="${vaccancy.category.title}" /></td>
+							<td><c:out value="${vaccancyCount.vacancy.title}" /></td>
+							<td><c:out value="${vaccancyCount.vacancy.title}" /></td>
+							<td><c:out value="${vaccancyCount.vacancy.category.title}" /></td>
+							<td><c:out value="${vaccancyCount.count}" /></td>
 						</tr>
 					</c:forEach>
 				</tr>

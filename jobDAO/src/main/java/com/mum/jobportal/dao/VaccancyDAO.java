@@ -86,7 +86,7 @@ group by v.id;
 	 * */
 	@SuppressWarnings("unchecked")
 	public List<VaccancyCount> getAllVacancyByEmployerAndCountApplications(long employerID) {
-		Query query=sessionFactory.getCurrentSession().createQuery("Select new com.mum.jobportal.utils.VaccancyCount(v,COUNT(app.applicationId)) From Vaccancy v LEFT OUTER JOIN v.applicationList app on v.id=a.vaccancy.id  where v.employer.id=:empID group by v.id");
+		Query query=sessionFactory.getCurrentSession().createQuery("Select new com.mum.jobportal.utils.VaccancyCount(v,COUNT(app.applicationId)) From Vaccancy v LEFT OUTER JOIN v.applicationList app  where v.employer.id=:empID group by v.id");
 		query.setLong("empID", employerID);
 		return query.list();
 	}

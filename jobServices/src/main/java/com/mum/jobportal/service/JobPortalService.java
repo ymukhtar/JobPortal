@@ -293,7 +293,7 @@ public class JobPortalService implements IJobPortalService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<VaccancyCount> getAllVacancyByEmployerAndCountApplications(long employerID) {
 		return vaccancyDAO.getAllVacancyByEmployerAndCountApplications(employerID);
 	}
