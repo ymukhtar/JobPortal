@@ -10,6 +10,7 @@ import com.mum.jobportal.domain.JobSeeker;
 import com.mum.jobportal.domain.User;
 import com.mum.jobportal.domain.Vaccancy;
 import com.mum.jobportal.domain.VaccancyApplication;
+import com.mum.jobportal.utils.VaccancyCount;
 /**
  * 
  * @author Awais Tariq
@@ -73,4 +74,6 @@ public interface IJobPortalService {
 	public VaccancyApplication get(long id);
 	public List<VaccancyApplication> getAll();
 	public List<VaccancyApplication> getAllVacancyByEmployer(long employerID);
+	public List<VaccancyCount> getAllVacancyByEmployerAndCountApplications(long employerID);
+
 }
