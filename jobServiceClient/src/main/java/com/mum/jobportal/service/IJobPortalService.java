@@ -20,6 +20,7 @@ public interface IJobPortalService {
 	public void updateEmployer(Employer employer);
 	public void deleteEmployer(Employer employer);
 	public Employer getEmployer(long id);
+	public Employer getEmployer(String userName);
 	public List<Employer> getAllEmployer();
 	
 	public void createJobSeeker(JobSeeker jobSeeker);
@@ -51,4 +52,5 @@ public interface IJobPortalService {
 	public void deleteVaccancy(Vaccancy vaccancy);
 	public Vaccancy getVaccancy(long id);
 	public List<Vaccancy> getAllVaccancy();
+	public List<Vaccancy> getAllVaccancyByEmployer(long employerID);
 }

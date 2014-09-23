@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mum.jobportal.domain.Authorities;
 import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Employer;
+import com.mum.jobportal.domain.Vaccancy;
 import com.mum.jobportal.service.IJobPortalService;
 import com.mum.jobportal.utils.JobPortalAuthorities;
 
@@ -34,6 +35,8 @@ public class HomeController {
 	@Secured(JobPortalAuthorities.ROLE_USER)
 	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public String getHome(Model model,HttpServletRequest request){
+		UserDetails userDetails =
+				 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		logger.info("ROLE_USER"+request.isUserInRole(JobPortalAuthorities.ROLE_ADMIN));
 		if(request.isUserInRole(JobPortalAuthorities.ROLE_ADMIN)){
 			List<Category> catList=service.getAllCategory();
@@ -41,10 +44,33 @@ public class HomeController {
 			model.addAttribute("category", new Category());
 			return "adminHome";
 		}
-		if(request.isUserInRole(JobPortalAuthorities.ROLE_JOB_SEEKER)){
+		else if(request.isUserInRole(JobPortalAuthorities.ROLE_JOB_SEEKER)){
 			return "jobSeekerHome";
+		}else if(request.isUserInRole(JobPortalAuthorities.ROLE_EMPLOYER)){
+			Employer employer=service.getEmployer(userDetails.getUsername());
+			//model.addAttribute("vacancy_", new Vaccancy());
+			model.addAttribute("vaccancyList", employer.getVaccancyList());
+			return "employerHome";
 		}
 		return "home";
+	}
+	
+
+	@Secured(JobPortalAuthorities.ROLE_EMPLOYER)
+	@RequestMapping(value="/addVacancy",method=RequestMethod.GET)
+	public String getVacancyAddPage(Model model,HttpServletRequest request){
+		List<Category> catList=service.getAllCategory();
+		model.addAttribute("catList", catList);
+		model.addAttribute("vacancy_", new Vaccancy());
+		return "AddVacancy";
+	}
+	
+	@Secured(JobPortalAuthorities.ROLE_EMPLOYER)
+	@RequestMapping(value="/addVacancy",method=RequestMethod.POST)
+	public String getVacancyAddPage(@Valid Vaccancy vacancy,RedirectAttributes redirectAttr){
+		service.createVaccancy(vacancy);
+		redirectAttr.addFlashAttribute("message", "Vacancy has been successfully created");
+		return "redirect:/home";
 	}
 	
 	@Secured(JobPortalAuthorities.ROLE_ADMIN)

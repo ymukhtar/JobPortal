@@ -57,6 +57,13 @@ public class JobPortalService implements IJobPortalService {
 		// TODO Auto-generated method stub
 		return employerDAO.get(id);
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public Employer getEmployer(String userName) {
+		// TODO Auto-generated method stub
+		return employerDAO.get(userName);
+	}
+	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<Employer> getAllEmployer() {
 		// TODO Auto-generated method stub
@@ -188,4 +195,9 @@ public class JobPortalService implements IJobPortalService {
 		return vaccancyDAO.getAll();
 	}
 
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public List<Vaccancy> getAllVaccancyByEmployer(long employerID) {
+		// TODO Auto-generated method stub
+		return vaccancyDAO.getAllVacancyByEmployer(employerID);
+	}
 }

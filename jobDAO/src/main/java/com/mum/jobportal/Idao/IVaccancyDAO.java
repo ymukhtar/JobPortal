@@ -10,4 +10,5 @@ public interface IVaccancyDAO {
 	public void delete(Vaccancy vaccancy);
 	public Vaccancy get(long id);
 	public List<Vaccancy> getAll();
+	public List<Vaccancy> getAllVacancyByEmployer(long employerID);
 }

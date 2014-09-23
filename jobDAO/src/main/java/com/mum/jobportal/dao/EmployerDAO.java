@@ -2,6 +2,7 @@ package com.mum.jobportal.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,5 +29,10 @@ public class EmployerDAO extends AbstractJobPortalDAO implements IEmployerDAO{
 	@SuppressWarnings("unchecked")
 	public List<Employer> getAll() {
 		return sessionFactory.getCurrentSession().createQuery("From Employer").list();
+	}
+	public Employer get(String userName) {
+		Query query= sessionFactory.getCurrentSession().createQuery("From Employer e where e.user.userName=:user");
+		query.setParameter("user",userName);
+		return (Employer)query.uniqueResult();
 	}
 }
