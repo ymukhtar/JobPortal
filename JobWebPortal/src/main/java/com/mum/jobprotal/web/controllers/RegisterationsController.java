@@ -1,14 +1,19 @@
 package com.mum.jobprotal.web.controllers;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +24,11 @@ import com.mum.jobportal.domain.Authorities;
 import com.mum.jobportal.domain.Employer;
 import com.mum.jobportal.domain.JobSeeker;
 import com.mum.jobportal.domain.User;
+import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.domain.VaccancyApplication;
 import com.mum.jobportal.service.IJobPortalService;
 import com.mum.jobportal.service.SpringMailSender;
+import com.mum.jobportal.utils.JobApplicationStatus;
 import com.mum.jobportal.utils.JobPortalAuthorities;
 
 @Controller
@@ -92,5 +100,17 @@ public class RegisterationsController {
 	public String regesterJobSeeker(Model model){
 		model.addAttribute("jobSeeker",new JobSeeker());
 		return "registerJobSeeker";
+	}
+	
+	@RequestMapping(value="/apply/{id}",method=RequestMethod.GET)
+	public String applyForJob(Model model,@PathVariable long id,RedirectAttributes redirectAttr){
+		UserDetails userDetails =(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Vaccancy vaccancy=jobPortalService.getVaccancy(id);
+		JobSeeker jobSeeker=jobPortalService.get(userDetails.getUsername());
+		
+		VaccancyApplication application=new VaccancyApplication(vaccancy, jobSeeker, new Date(), JobApplicationStatus.RECIEVED);
+		
+		redirectAttr.addFlashAttribute("message", "Your application for "+ vaccancy.getTitle()+" vaccancy sent to employer successfully");
+		return "redirect:/applyJobSuccess.jsp";
 	}
 }

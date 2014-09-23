@@ -134,7 +134,7 @@
 					<td>${vaccancy.employer.name}</td>
 					<td>${vaccancy.vaccnayExpiryDate}</td>
 					<sec:authorize access="hasRole('ROLE_JOB_SEEKER')">
-						<td><a href="#">apply</a></td>
+						<td><a href="<c:url value="/apply/${vaccancy.id}"/>">apply</a></td>
 					</sec:authorize>
 					
 				</tr>

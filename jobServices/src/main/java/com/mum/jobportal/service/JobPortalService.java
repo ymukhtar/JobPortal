@@ -21,6 +21,7 @@ import com.mum.jobportal.domain.Employer;
 import com.mum.jobportal.domain.JobSeeker;
 import com.mum.jobportal.domain.User;
 import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.domain.VaccancyApplication;
 
 /**
  * @author awais-tariq
@@ -141,6 +142,11 @@ public class JobPortalService implements IJobPortalService {
 		return jobSeekerDAO.getAll();
 	}
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public JobSeeker get(String userName){
+		
+		return jobSeekerDAO.get(userName);
+	}
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void createCategory(Category category) {
 		
 		categoryDAO.create(category);
@@ -255,5 +261,35 @@ public class JobPortalService implements IJobPortalService {
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public List<Vaccancy> getPagedVaccanyList(int start,int fetchSize,String addressString,String criteriaString){
 		return vaccancyDAO.getPagedVaccanyList(start, fetchSize, addressString, criteriaString);
+	}
+
+	public void create(VaccancyApplication vaccancyApplication) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void update(VaccancyApplication vaccancy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delete(VaccancyApplication vaccancy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public VaccancyApplication get(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<VaccancyApplication> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<VaccancyApplication> getAllVacancyByEmployer(long employerID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
