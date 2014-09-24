@@ -311,4 +311,15 @@ public class JobPortalService implements IJobPortalService {
 		// TODO Auto-generated method stub
 		return vaccancyApplicationDAO.getAllVacancyByJobSeekerCount(username);
 	}
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public List<VaccancyApplication> getAllVacancyByEmployerApplications(
+			String username) {
+		// TODO Auto-generated method stub
+		return vaccancyApplicationDAO.getAllVacancyByEmployerApplications(username);
+	}
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public long getAllVacancyByEmployerCount(String username) {
+		// TODO Auto-generated method stub
+		return vaccancyApplicationDAO.getAllVacancyByEmployerCount(username);
+	}
 }

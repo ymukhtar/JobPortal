@@ -47,6 +47,14 @@
 		float: left;
 	}
 </style>
+<script type="text/javascript">
+function viewAllApplication(){
+	
+	var urlA="<%=request.getContextPath()%>/viewAllApplicationRecieved?currentPage=1";
+	window.location.href=urlA;
+	
+}
+</script>
 </head>
 <body>
 	<br/>
@@ -57,6 +65,10 @@
 		<sec:authentication property="principal.username" />
 	</h4>
 	<hr/>
+				<div class="form-group form-group-lg" style='margin-left: 85%'>
+					<a class="btn btn-default" role="button" onclick="viewAllApplication()">
+				<span class="glyphicon glyphicon-search"></span>View All Applications</a>
+				</div>
 	<h4><a class="btn btn-default" href="<c:url value="/addVacancy"/>" role="button">Add Vacancy &raquo;</a></h4>
 	<div class="container">
 	<h3>Current Vacancies created..</h3>

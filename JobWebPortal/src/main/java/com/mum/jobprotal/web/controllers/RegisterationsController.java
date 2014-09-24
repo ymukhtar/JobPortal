@@ -1,10 +1,21 @@
 package com.mum.jobprotal.web.controllers;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -74,7 +85,7 @@ public class RegisterationsController {
 		return "redirect:/registerationSuccess";
 	}
 	@RequestMapping(value="/saveJobSeeker",method=RequestMethod.POST)
-	public String registerJobSeeker(@Valid JobSeeker jobSeeker,BindingResult result,@RequestParam(value = "resume", required = false) MultipartFile resume,RedirectAttributes redirectAttr){
+	public String registerJobSeeker(@Valid JobSeeker jobSeeker,BindingResult result,RedirectAttributes redirectAttr){
 		User user=jobPortalService.getUser(jobSeeker.getUser().getUserName());
 		if(user!=null){
 			logger.info("User is not null");
@@ -114,6 +125,54 @@ public class RegisterationsController {
 		return "redirect:/applyJobSuccess";
 	}
 	
+	@RequestMapping(value="/resume/{id}",method=RequestMethod.GET)
+	public String viewApplicantsResume(Model model,@PathVariable long id,HttpServletRequest request,HttpServletResponse response,RedirectAttributes redirectAttr){
+		UserDetails userDetails =(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		JobSeeker jobSeeker=jobPortalService.getJobSeeker(id);
+		String path="";
+		try {
+
+			File file=new File(request.getServletContext().getRealPath("/resources/resume.doc"));
+			writeBytesToFile(file, jobSeeker.getResume());
+			path=file.getAbsolutePath();
+            String filePathToBeServed = path;
+                    File fileToDownload = new File(filePathToBeServed);
+                    InputStream inputStream = new FileInputStream(fileToDownload);
+                    response.setContentType("application/force-download");
+                    response.setHeader("Content-Disposition", "attachment; filename=resume.doc"); 
+                    IOUtils.copy(inputStream, response.getOutputStream());
+                      response.flushBuffer();
+			logger.info("file written at "+file.getAbsolutePath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    String fileURL = path;
+	    
+	    FileInputStream fileInputStream = null;
+	    BufferedInputStream bufferedInputStream = null;
+
+		return "";
+	}
+	public static void writeBytesToFile(File theFile, byte[] bytes) throws IOException {
+		BufferedOutputStream bos = null;
+
+		try {
+			
+			FileOutputStream fos = new FileOutputStream(theFile);
+			bos = new BufferedOutputStream(fos); 
+			bos.write(bytes);
+			
+		}finally {
+			if(bos != null) {
+				try  {
+					//flush and close the BufferedOutputStream
+					bos.flush();
+					bos.close();
+				} catch(Exception e){}
+			}
+		}
+      }
 	@RequestMapping(value="/applyJobSuccess",method=RequestMethod.GET)
 	public String getJobApplySuccess(Model model){
 		return "applyJobSuccess";

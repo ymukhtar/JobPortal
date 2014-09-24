@@ -7,23 +7,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<sec:authorize access="hasRole('ROLE_JOB_SEEKER')">
+
 <jsp:include page="includeHome.jsp">
 	<jsp:param value="a" name="a" />
 </jsp:include>
-</sec:authorize>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Job Portal Welcome</title>
-<sec:authorize access="isAnonymous()">
-	<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-	<link href="<c:url value="/resources/css/jumbotron.css"/>" rel="stylesheet">
-	<script src="<c:url value="/resources/js/jQuery.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-</sec:authorize>
+
 <script type="text/javascript">
 	function nextPage(page){
 		if(page<1 || page>parseInt("${totalPages}",10))
@@ -35,6 +30,19 @@
 		}
 
 	}
+	
+	function nextPageEmp(page){
+		if(page<1 || page>parseInt("${totalPages}",10))
+		{}
+		else
+		{
+			var urlA="<%=request.getContextPath()%>/viewAllApplicationRecieved?currentPage="+page;
+			window.location.href=urlA;
+		}
+
+	}
+	
+	
 	
 	jQuery(document).ready(function(){
 		jQuery('#pageSelection').val('${currentPage}');
@@ -49,6 +57,7 @@
 
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
+	
 		<div class="container">
 			<div class="row">
 				<h3>
@@ -57,6 +66,7 @@
 					<sec:authentication property="principal.username" />
 					as Job Seeker
 				</sec:authorize>
+				
 				</h3>
 
 				<p>Search from Millions of Jobs</p>
@@ -73,6 +83,9 @@
 					<th>Employer</th>
 					<th>Apply Date</th>
 					<th>Status</th>
+					<sec:authorize access="hasRole('ROLE_EMPLOYER')">
+						<th>View Resume</th>
+					</sec:authorize>		
 				</tr>
 			<thead>
 			<tbody>
@@ -94,6 +107,9 @@
 					<c:if test="${application.status == 'A'.charAt(0)}">
 						<td>APPROVED</td>
 					</c:if>
+					<sec:authorize access="hasRole('ROLE_EMPLOYER')">
+						<td><a href="<c:url value="/resume/${application.seeker.personId}"/>">resume</a></td>
+					</sec:authorize>
 				</tr>
 			</c:forEach>
 			</tbody>
@@ -102,17 +118,40 @@
 		<%--For displaying Page numbers. 
     The when condition does not display a link for the current page--%>
     
-    <ul class="pager">
-	  <li class="previous"><a onclick="nextPage('${currentPage-1}');">&larr; Previous</a></li>
-	  <li>
-	  		<select id="pageSelection" onchange="nextPage(this.value);">
-				<c:forEach begin="1" end="${totalPages}" varStatus="loop">
-					<option value="${loop.index}">${loop.index}</option>
-				</c:forEach>
-			</select>
-	  </li>
-	  <li class="next"><a onclick="nextPage('${currentPage+1}');">Next &rarr;</a></li>
-	</ul>
+    
+    		  <sec:authorize access="hasRole('ROLE_JOB_SEEKER')">
+    		      <ul class="pager">
+					  <li class="previous"><a onclick="nextPage('${currentPage-1}');">&larr; Previous</a></li>
+					  <li>
+				
+						  		<select id="pageSelection" onchange="nextPage(this.value);">
+									<c:forEach begin="1" end="${totalPages}" varStatus="loop">
+										<option value="${loop.index}">${loop.index}</option>
+									</c:forEach>
+								</select>
+					
+						 
+					  </li>
+					  <li class="next"><a onclick="nextPage('${currentPage+1}');">Next &rarr;</a></li>
+					</ul>
+    		   </sec:authorize>
+	
+	
+			 <sec:authorize access="hasRole('ROLE_EMPLOYER')">
+			 	<ul class="pager">
+			 	<li class="previous"><a onclick="nextPageEmp('${currentPage-1}');">&larr; Previous</a></li>
+	  				<li>
+						<select id="pageSelection" onchange="nextPageEmp(this.value);">
+							<c:forEach begin="1" end="${totalPages}" varStatus="loop">
+								<option value="${loop.index}">${loop.index}</option>
+							</c:forEach>
+						</select>
+				
+				    </li>
+				<li class="next"><a onclick="nextPageEmp('${currentPage+1}');">Next &rarr;</a></li>
+				</ul>
+			 </sec:authorize>
+	
 		<br>
 
 	</div>

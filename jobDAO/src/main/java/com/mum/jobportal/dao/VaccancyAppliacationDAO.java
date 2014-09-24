@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mum.jobportal.Idao.IVaccancyApplicationDAO;
 import com.mum.jobportal.dao.AbstractJobPortalDAO;
 import com.mum.jobportal.domain.JobSeeker;
+import com.mum.jobportal.domain.Vaccancy;
 import com.mum.jobportal.domain.VaccancyApplication;
+import com.mum.jobportal.utils.VaccancyCount;
 
 @Repository
 @Transactional(propagation=Propagation.MANDATORY)
@@ -49,6 +51,21 @@ public class VaccancyAppliacationDAO extends AbstractJobPortalDAO implements IVa
 	
 	public long getAllVacancyByJobSeekerCount(String username) {
 		Query query=sessionFactory.getCurrentSession().createQuery("select count(j.id) from JobSeeker j where j.user.userName=:u");
+		query.setParameter("u", username);
+		return (Long) query.uniqueResult();
+	}
+
+	public List<VaccancyApplication> getAllVacancyByEmployerApplications(
+			String username) {
+		// TODO Auto-generated method stub
+		Query query=sessionFactory.getCurrentSession().createQuery("select v.applicationList from Vaccancy v where v.employer.user.userName=:u");
+		query.setParameter("u", username);
+		return query.list();
+	}
+
+	public long getAllVacancyByEmployerCount(String username) {
+		// TODO Auto-generated method stub
+		Query query=sessionFactory.getCurrentSession().createQuery("select count(v.applicationList) from Vaccancy v where v.employer.user.userName=:u");
 		query.setParameter("u", username);
 		return (Long) query.uniqueResult();
 	}
