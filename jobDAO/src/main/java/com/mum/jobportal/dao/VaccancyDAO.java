@@ -13,6 +13,7 @@ import com.mum.jobportal.Idao.IVaccancyDAO;
 import com.mum.jobportal.domain.Address;
 import com.mum.jobportal.domain.Category;
 import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.domain.VaccancyApplication;
 import com.mum.jobportal.utils.VaccancyCount;
 /**
  * 

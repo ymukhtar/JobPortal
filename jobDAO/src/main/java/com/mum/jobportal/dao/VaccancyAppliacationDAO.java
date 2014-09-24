@@ -50,7 +50,7 @@ public class VaccancyAppliacationDAO extends AbstractJobPortalDAO implements IVa
 	}
 	
 	public long getAllVacancyByJobSeekerCount(String username) {
-		Query query=sessionFactory.getCurrentSession().createQuery("select count(j.id) from JobSeeker j where j.user.userName=:u");
+		Query query=sessionFactory.getCurrentSession().createQuery("select count(v.id) from VaccancyApplication v where v.seeker.user.userName=:u");
 		query.setParameter("u", username);
 		return (Long) query.uniqueResult();
 	}
@@ -72,5 +72,11 @@ public class VaccancyAppliacationDAO extends AbstractJobPortalDAO implements IVa
 		return (Long) query.uniqueResult();
 	}
 	
+	public List<VaccancyApplication> getAllApplicationsforThisVaccancy(long id)
+	{
+		Query query=sessionFactory.getCurrentSession().createQuery("From VaccancyApplication v where v.vaccancy.id=:id");
+		query.setParameter("id", id);
+		return query.list();
+	}
 
 }

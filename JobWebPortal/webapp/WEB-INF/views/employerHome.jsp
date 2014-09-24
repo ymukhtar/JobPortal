@@ -65,10 +65,7 @@ function viewAllApplication(){
 		<sec:authentication property="principal.username" />
 	</h4>
 	<hr/>
-				<div class="form-group form-group-lg" style='margin-left: 85%'>
-					<a class="btn btn-default" role="button" onclick="viewAllApplication()">
-				<span class="glyphicon glyphicon-search"></span>View All Applications</a>
-				</div>
+
 	<h4><a class="btn btn-default" href="<c:url value="/addVacancy"/>" role="button">Add Vacancy &raquo;</a></h4>
 	<div class="container">
 	<h3>Current Vacancies created..</h3>
@@ -81,6 +78,7 @@ function viewAllApplication(){
 					<th>Title</th>
 					<th>Description</th>
 					<th>Applications Received</th>
+					<th>View Applicants Resume</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -92,6 +90,7 @@ function viewAllApplication(){
 							<td><c:out value="${vaccancyCount.vacancy.title}" /></td>
 							<td><c:out value="${vaccancyCount.vacancy.category.title}" /></td>
 							<td><c:out value="${vaccancyCount.count}" /></td>
+							<td><a href="<c:url value="/resumeAgainstVaccancy?currentPage=1&id=${vaccancyCount.vacancy.id}"/>">Recieved Resumes</a></td>
 						</tr>
 					</c:forEach>
 				</tr>

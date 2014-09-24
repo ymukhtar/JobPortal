@@ -82,4 +82,6 @@ public interface IJobPortalService {
 	public List<VaccancyApplication> getAllVacancyByEmployerApplications(String username,int startIndex,int fetchSize);
 	public long getAllVacancyByEmployerCount(String username);
 	
+	public List<VaccancyApplication> getAllApplicationsforThisVaccancy(long id);
+	
 }

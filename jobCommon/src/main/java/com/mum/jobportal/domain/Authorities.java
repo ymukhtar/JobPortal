@@ -1,5 +1,7 @@
 package com.mum.jobportal.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import javax.persistence.ManyToOne;
  * @author aTariq
  */
 @Entity
-public class Authorities {
+public class Authorities implements Serializable{
 	@Id
 	@GeneratedValue
 	private long user_role_id;

@@ -31,12 +31,12 @@
 
 	}
 	
-	function nextPageEmp(page){
+	function nextPageEmp(page,id){
 		if(page<1 || page>parseInt("${totalPages}",10))
 		{}
 		else
 		{
-			var urlA="<%=request.getContextPath()%>/viewAllApplicationRecieved?currentPage="+page;
+			var urlA="<%=request.getContextPath()%>/resumeAgainstVaccancy?currentPage="+page+"&id=${vaccancyCount.vacancy.id}";
 			window.location.href=urlA;
 		}
 

@@ -100,10 +100,36 @@ public class HomeController {
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("fetchSize", CommonUtility.FETCH_SIZE);
 			model.addAttribute("totalPages", totalPages);
-			model.addAttribute("message", "Total application you applied for "+count);
+			model.addAttribute("message", "Total application(s) you applied for "+count);
 			int fetchSize=(int)( (startIndex+CommonUtility.FETCH_SIZE)<count?CommonUtility.FETCH_SIZE:(count-startIndex));
 			
 			List<VaccancyApplication> vaccancyApplicationList=service.getAllVacancyByJobSeekerApplications(userDetails.getUsername());
+			model.addAttribute("applicationList", vaccancyApplicationList);
+		}
+		
+		return "alljobApplication";
+	}
+	
+	
+	@RequestMapping(value="/resumeAgainstVaccancy",method=RequestMethod.GET)
+	public String getAllApplicationsAgainsVaccancy(Model model,@RequestParam("currentPage") int currentPage,@RequestParam("id") long id){
+		
+		Vaccancy vaccancy=service.getVaccancy(id);
+		long count=vaccancy.getApplicationList().size();
+		
+		int totalPages=(int)Math.ceil(1.0*count/CommonUtility.FETCH_SIZE);
+		if(count==0){
+			model.addAttribute("message", "No jobs found matching your criteria!");
+		}else{
+			model.addAttribute("count", count);
+			int startIndex=(currentPage-1)*CommonUtility.FETCH_SIZE;
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("fetchSize", CommonUtility.FETCH_SIZE);
+			model.addAttribute("totalPages", totalPages);
+			model.addAttribute("message", "Total application(s) recieved for "+vaccancy.getTitle()+" vaccacny are "+count);
+			int fetchSize=(int)( (startIndex+CommonUtility.FETCH_SIZE)<count?CommonUtility.FETCH_SIZE:(count-startIndex));
+			
+			List<VaccancyApplication> vaccancyApplicationList=service.getAllApplicationsforThisVaccancy(id);
 			model.addAttribute("applicationList", vaccancyApplicationList);
 		}
 		

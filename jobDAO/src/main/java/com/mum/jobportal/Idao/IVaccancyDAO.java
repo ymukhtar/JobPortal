@@ -3,6 +3,7 @@ package com.mum.jobportal.Idao;
 import java.util.List;
 
 import com.mum.jobportal.domain.Vaccancy;
+import com.mum.jobportal.domain.VaccancyApplication;
 import com.mum.jobportal.utils.VaccancyCount;
 
 public interface IVaccancyDAO {

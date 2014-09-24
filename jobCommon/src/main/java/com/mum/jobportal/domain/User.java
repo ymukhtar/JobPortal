@@ -1,5 +1,6 @@
 package com.mum.jobportal.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  */
 @Entity
-public class User {
+public class User implements Serializable{
 	@Id
 	@Column(length=45)
 	@NotEmpty(message="User Name must be specified.")
