@@ -114,23 +114,23 @@ public class HomeController {
 	@RequestMapping(value="/viewAllApplicationRecieved",method=RequestMethod.GET)
 	public String getAllApplicationsRecieved(Model model,@RequestParam("currentPage") int currentPage){
 		
-//		String userDetails = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		long count=service.getAllVacancyByEmployerCount(userDetails);
-//		int totalPages=(int)Math.ceil(1.0*count/CommonUtility.FETCH_SIZE);
-//		if(count==0){
-//			model.addAttribute("message", "No jobs found matching your criteria!");
-//		}else{
-//			model.addAttribute("count", count);
-//			int startIndex=(currentPage-1)*CommonUtility.FETCH_SIZE;
-//			model.addAttribute("currentPage", currentPage);
-//			model.addAttribute("fetchSize", CommonUtility.FETCH_SIZE);
-//			model.addAttribute("totalPages", totalPages);
-//			model.addAttribute("message", "Total application you applied for "+count);
-//			int fetchSize=(int)( (startIndex+CommonUtility.FETCH_SIZE)<count?CommonUtility.FETCH_SIZE:(count-startIndex));
-//			
-//			List<VaccancyApplication> vaccancyApplicationList=service.getAllVacancyByEmployerApplications(userDetails);
-//			model.addAttribute("applicationList", vaccancyApplicationList);
-//		}
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		long count=service.getAllVacancyByEmployerCount(userDetails.getUsername());
+		int totalPages=(int)Math.ceil(1.0*count/CommonUtility.FETCH_SIZE);
+		if(count==0){
+			model.addAttribute("message", "No applications found!");
+		}else{
+			model.addAttribute("count", count);
+			int startIndex=(currentPage-1)*CommonUtility.FETCH_SIZE;
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("fetchSize", CommonUtility.FETCH_SIZE);
+			model.addAttribute("totalPages", totalPages);
+			model.addAttribute("message", "Total applications received "+count);
+			int fetchSize=(int)( (startIndex+CommonUtility.FETCH_SIZE)<count?CommonUtility.FETCH_SIZE:(count-startIndex));
+			
+			List<VaccancyApplication> vaccancyApplicationList=service.getAllVacancyByEmployerApplications(userDetails.getUsername(),startIndex,fetchSize);
+			model.addAttribute("applicationList", vaccancyApplicationList);
+		}
 		
 		return "alljobApplication";
 	}

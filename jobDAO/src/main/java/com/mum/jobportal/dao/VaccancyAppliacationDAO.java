@@ -55,17 +55,19 @@ public class VaccancyAppliacationDAO extends AbstractJobPortalDAO implements IVa
 		return (Long) query.uniqueResult();
 	}
 
-	public List<VaccancyApplication> getAllVacancyByEmployerApplications(
-			String username) {
+	@SuppressWarnings("unchecked")
+	public List<VaccancyApplication> getAllVacancyByEmployerApplications(String username, int startIndex,int fetchSize) {
 		// TODO Auto-generated method stub
-		Query query=sessionFactory.getCurrentSession().createQuery("select v.applicationList from Vaccancy v where v.employer.user.userName=:u");
+		Query query=sessionFactory.getCurrentSession().createQuery("select v from VaccancyApplication v where v.vaccancy.employer.user.userName=:u");
 		query.setParameter("u", username);
+		query.setFirstResult(startIndex);
+		query.setMaxResults(fetchSize);
 		return query.list();
 	}
 
 	public long getAllVacancyByEmployerCount(String username) {
 		// TODO Auto-generated method stub
-		Query query=sessionFactory.getCurrentSession().createQuery("select count(v.applicationList) from Vaccancy v where v.employer.user.userName=:u");
+		Query query=sessionFactory.getCurrentSession().createQuery("select count(v.applicationId) from VaccancyApplication v where v.vaccancy.employer.user.userName=:u");
 		query.setParameter("u", username);
 		return (Long) query.uniqueResult();
 	}
